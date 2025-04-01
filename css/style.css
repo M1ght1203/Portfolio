@@ -1,0 +1,44 @@
+:root {
+    --side-padding: 3rem;
+}
+
+body {
+    background-color: #141314;
+    padding: 0rem var(--side-padding) 0rem var(--side-padding);
+    color: #ffffff;
+}
+
+/* Laptop L and up */
+@media (min-width: 1440px) {
+    :root {
+        --side-padding: 4rem;
+    }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    :root {
+        --side-padding: 2rem;
+    }
+}
+
+/* Mobile L */
+@media (max-width: 425px) {
+    :root {
+        --side-padding: 1.5rem;
+    }
+}
+
+/* Mobile M */
+@media (max-width: 375px) {
+    :root {
+        --side-padding: 1.25rem;
+    }
+}
+
+/* Mobile S */
+@media (max-width: 320px) {
+    :root {
+        --side-padding: 1rem;
+    }
+}
