@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="style.css" />
 
     <!-- Analytics -->
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="778f1b86-bd55-4a72-ae92-56d50467d7d5"></script>
+    <script defer src="https://cloud.umami.is/script.js"
+        data-website-id="778f1b86-bd55-4a72-ae92-56d50467d7d5"></script>
 </head>
 
 <body>
@@ -99,13 +100,53 @@
         </div>
     </div>
 
-    <!-- Right Tabs -->
+    <!-- Right Tabs for Desktop -->
     <div class="right-tabs">
         <a href="#"><span>Organizations</span></a>
         <a href="#"><span>Resume</span></a>
         <a href="https://www.linkedin.com/in/jzheng39/" target="_blank"><span>LinkedIn</span></a>
         <a href="https://github.com/M1ght1203" target="_blank"><span>GitHub</span></a>
     </div>
+
+    <!-- SVG Hamburger + X Toggle -->
+    <div class="hamburger-icon" onclick="toggleMenu()">
+        <svg id="icon-hamburger" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none"
+            viewBox="0 0 24 24">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24">
+            <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+    </div>
+
+    <div class="mobile-backdrop" onclick="toggleMenu()"></div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#">Organizations</a>
+        <a href="#">Resume</a>
+        <a href="https://www.linkedin.com/in/jzheng39/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/M1ght1203" target="_blank">GitHub</a>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("mobileMenu");
+            const backdrop = document.querySelector(".mobile-backdrop");
+            const iconHamburger = document.getElementById("icon-hamburger");
+            const iconClose = document.getElementById("icon-close");
+
+            const isOpen = menu.classList.toggle("show");
+            backdrop.classList.toggle("visible");
+            iconHamburger.style.display = isOpen ? "none" : "block";
+            iconClose.style.display = isOpen ? "block" : "none";
+        }
+
+        // Initial state
+        window.onload = () => {
+            document.getElementById("icon-close").style.display = "none";
+        };
+    </script>
+
 </body>
 
 </html>
