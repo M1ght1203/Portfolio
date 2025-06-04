@@ -74,7 +74,7 @@ body::before {
 
 .main-text .name {
     font-size: clamp(1rem, 3vw + 0.2rem, 3.5rem);
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 0.25rem;
     color: #999999;
 }
