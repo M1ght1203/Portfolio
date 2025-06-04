@@ -191,9 +191,17 @@ body::before {
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
+
 .project-button:hover {
     background-color: #292c3e;
     transform: scale(1.05);
+}
+
+/* Hide mobile elements on larger screens */
+.hamburger-icon,
+.mobile-menu,
+.mobile-backdrop {
+    display: none;
 }
 
 /* Mobile */
@@ -209,6 +217,7 @@ body::before {
         z-index: 1001;
         cursor: pointer;
         color: white;
+        display: block;
     }
 
     .hamburger-icon svg {
@@ -254,6 +263,7 @@ body::before {
         pointer-events: none;
         transition: opacity 0.3s ease;
         z-index: 999;
+        display: block;
     }
 
     .mobile-backdrop.visible {
