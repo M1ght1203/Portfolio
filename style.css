@@ -43,8 +43,9 @@ body::before {
 
 /* Hero Section */
 .hero-section {
-    min-height: 100vh;
+    min-height: calc(100vh - 7rem);
     position: relative;
+    align-items: center;
 }
 
 .scroll-down {
@@ -55,6 +56,7 @@ body::before {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     gap: 0.25rem;
     color: white;
     text-decoration: none;
@@ -229,6 +231,10 @@ body::before {
 
     .scroll-wrapper {
         padding-top: 2rem;
+    }
+
+    .hero-section {
+        min-height: calc(100vh - 4rem);
     }
 
     .hamburger-icon {
