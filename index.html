@@ -28,7 +28,7 @@
 <body>
     <nav class="top-nav">
         <div class="nav-left">
-            <a href="#">Career</a>
+            <a href="#career">Career</a>
             <a href="#projects">Projects</a>
             <a href="#skills">Skills</a>
             <a href="#">Organizations</a>
@@ -68,6 +68,49 @@
                         stroke-linejoin="round" />
                 </svg>
             </a>
+        </section>
+
+        <section id="career" class="career-section">
+            <h2>Career Journey</h2>
+            <div class="boarding-pass">
+                <div class="bp-header">
+                    <span class="job-title">Software Engineer</span>
+                    <span class="company">ACME Corp</span>
+                </div>
+                <div class="duration">Jan 2022 – Present</div>
+                <p class="description">Developing automation tools and web apps for internal teams.</p>
+                <div class="tech-stack">
+                    <span class="tag">Python</span>
+                    <span class="tag">Django</span>
+                    <span class="tag">PostgreSQL</span>
+                </div>
+            </div>
+            <div class="boarding-pass">
+                <div class="bp-header">
+                    <span class="job-title">Junior Developer</span>
+                    <span class="company">BetaSoft</span>
+                </div>
+                <div class="duration">Jun 2020 – Dec 2021</div>
+                <p class="description">Worked on customer-facing mobile applications.</p>
+                <div class="tech-stack">
+                    <span class="tag">Flutter</span>
+                    <span class="tag">Firebase</span>
+                    <span class="tag">SQLite</span>
+                </div>
+            </div>
+            <div class="boarding-pass">
+                <div class="bp-header">
+                    <span class="job-title">IT Intern</span>
+                    <span class="company">City Services</span>
+                </div>
+                <div class="duration">May 2019 – May 2020</div>
+                <p class="description">Supported legacy systems and assisted with cloud migration.</p>
+                <div class="tech-stack">
+                    <span class="tag">AWS</span>
+                    <span class="tag">Bash</span>
+                    <span class="tag">Linux</span>
+                </div>
+            </div>
         </section>
 
         <section id="projects" class="projects-section">
@@ -146,7 +189,7 @@
     <div class="mobile-backdrop" onclick="toggleMenu()"></div>
 
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#">Career</a>
+        <a href="#career">Career</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#">Organizations</a>
@@ -193,6 +236,27 @@
                 });
             });
         }
+
+        document.querySelectorAll('a[href="#career"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('career').scrollIntoView({
+                    behavior: 'smooth'
+                });
+                toggleMenu && toggleMenu();
+            });
+        });
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.boarding-pass').forEach(el => observer.observe(el));
 
         function toggleTheme() {
             const isLight = document.getElementById('themeToggle').checked;
