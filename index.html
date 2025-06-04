@@ -151,6 +151,16 @@
         window.onload = () => {
             document.getElementById("icon-close").style.display = "none";
         };
+
+        const scrollLink = document.querySelector('.scroll-down');
+        if (scrollLink) {
+            scrollLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('projects').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        }
     </script>
 
 </body>

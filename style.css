@@ -12,7 +12,6 @@ body {
     background-color: #0d0f1a;
     color: white;
     min-height: 100vh;
-    scroll-behavior: smooth;
 }
 
 body::before {
@@ -44,8 +43,11 @@ body::before {
 /* Hero Section */
 .hero-section {
     min-height: calc(100vh - 7rem);
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .scroll-down {
@@ -234,6 +236,10 @@ body::before {
 
     .hero-section {
         min-height: calc(100vh - 4rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .hamburger-icon {
