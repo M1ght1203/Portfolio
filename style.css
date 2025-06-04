@@ -246,7 +246,7 @@ body::before {
     width: fit-content;
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 4rem;
     align-items: center;
     padding: 0.5rem 1.5rem;
     background-color: var(--mobile-menu-bg);
@@ -258,7 +258,9 @@ body::before {
 
 .nav-left,
 .nav-right {
-    display: contents;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
 }
 
 .top-nav a {
