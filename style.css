@@ -280,8 +280,7 @@ body::before {
     color: var(--text-color);
     letter-spacing: 0.1em;
     text-decoration: none;
-    opacity: 0;
-    animation: fadeInTop 0.6s ease-out forwards;
+    opacity: 1;
 }
 
 
