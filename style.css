@@ -74,15 +74,15 @@ body::before {
 
 .main-text .name {
     font-size: clamp(1rem, 3vw + 0.2rem, 3.5rem);
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 0.25rem;
-    color: #cccccc;
+    color: #999999;
 }
 
 .main-text .focus {
     font-size: clamp(0.9rem, 2.5vw + 0.2rem, 3rem);
     font-weight: 600;
-    color: #bbbbbb;
+    color: #999999;
 }
 
 /* Timeline Footer */
