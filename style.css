@@ -97,6 +97,51 @@ body::before {
     animation: bounce 1.2s infinite;
 }
 
+#career {
+    padding: 4rem 2rem;
+    max-width: 900px;
+    margin: auto;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.career-entry {
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.career-entry h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.career-entry .company {
+    font-size: 1rem;
+    color: var(--secondary-text);
+    margin: 0.25rem 0 0.75rem;
+}
+
+.career-entry .description {
+    font-size: 0.95rem;
+    color: var(--footer-text);
+    line-height: 1.6;
+    list-style-type: disc;
+    margin-left: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.career-entry .tech {
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+}
+
 .projects-section {
     padding-top: 3rem;
 }
