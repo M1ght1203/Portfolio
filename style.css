@@ -99,7 +99,7 @@ body::before {
 
 #career {
     padding: 4rem 2rem;
-    max-width: 900px;
+    width: fit-content;
     margin: auto;
 }
 
@@ -338,7 +338,7 @@ body::before {
     transition: transform 0.2s ease;
 }
 
-.theme-toggle input:checked + .switch::before {
+.theme-toggle input:checked+.switch::before {
     transform: translateX(26px);
 }
 
@@ -507,9 +507,12 @@ body::before {
 }
 
 @keyframes bounce {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(5px);
     }
