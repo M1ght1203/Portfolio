@@ -42,14 +42,25 @@
                 <div class="focus">Fullstack &amp; Automation</div>
             </div>
 
-            <a href="#projects" class="scroll-down">
-                <span>See projects</span>
+            <a href="#timeline" class="scroll-down">
+                <span>See my journey</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                     viewBox="0 0 24 24" class="chevron">
                     <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" />
                 </svg>
             </a>
+        </section>
+
+        <section id="timeline" class="timeline-section">
+            <div class="work-timeline">
+                <div class="timeline-item">
+                    <strong>2024 – Present</strong> – Software Engineer at Your Company
+                </div>
+                <div class="timeline-item">
+                    <strong>2022 – 2024</strong> – Developer Intern at Another Co.
+                </div>
+            </div>
         </section>
 
         <section id="projects" class="projects-section">
@@ -156,7 +167,7 @@
         if (scrollLink) {
             scrollLink.addEventListener('click', (e) => {
                 e.preventDefault();
-                document.getElementById('projects').scrollIntoView({
+                document.getElementById('timeline').scrollIntoView({
                     behavior: 'smooth'
                 });
             });
