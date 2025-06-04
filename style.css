@@ -115,7 +115,6 @@ body::before {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.6s ease-out forwards;
-    text-align: center;
 }
 
 .career-entry h3 {
@@ -134,8 +133,6 @@ body::before {
     color: var(--footer-text);
     line-height: 1.6;
     list-style-type: disc;
-    display: inline-block;
-    text-align: left;
     margin-left: 1.25rem;
     margin-bottom: 0.5rem;
 }
