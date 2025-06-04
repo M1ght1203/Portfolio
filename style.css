@@ -132,6 +132,14 @@ body::before {
     font-size: 0.95rem;
     color: var(--footer-text);
     line-height: 1.6;
+    list-style-type: disc;
+    margin-left: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.career-entry .tech {
+    font-size: 0.9rem;
+    color: var(--secondary-text);
 }
 
 .projects-section {
