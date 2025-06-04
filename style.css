@@ -35,7 +35,7 @@ body::before {
 }
 
 .scroll-wrapper {
-    padding: 2rem 1.5rem;
+    padding: 5rem 1.5rem 2rem;
     position: relative;
     z-index: 1;
 }
@@ -139,41 +139,34 @@ body::before {
     cursor: not-allowed;
 }
 
-/* Right Tabs */
-.right-tabs {
+/* Top Navigation */
+.top-nav {
     position: fixed;
-    top: 25%;
-    right: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 3rem;
-    padding-right: 1rem;
+    justify-content: flex-end;
+    gap: 2rem;
+    padding: 1rem 2rem;
     z-index: 2;
 }
 
-.right-tabs a {
-    transform: rotate(180deg) translateX(-50px);
-    writing-mode: vertical-rl;
+.top-nav a {
     font-size: clamp(0.8rem, 1vw, 1rem);
     color: white;
     letter-spacing: 0.1em;
     text-decoration: none;
     opacity: 0;
-    transition: opacity 0.3s ease;
-    animation: slideInRight 0.6s ease-out forwards;
+    animation: fadeInTop 0.6s ease-out forwards;
 }
 
-.right-tabs a:nth-child(2) {
+.top-nav a:nth-child(2) {
     animation-delay: 0.1s;
 }
 
-.right-tabs a:nth-child(3) {
+.top-nav a:nth-child(3) {
     animation-delay: 0.2s;
-}
-
-.right-tabs a:hover {
-    opacity: 1;
 }
 
 /* Project Button */
@@ -206,8 +199,12 @@ body::before {
 
 /* Mobile */
 @media (max-width: 768px) {
-    .right-tabs {
+    .top-nav {
         display: none;
+    }
+
+    .scroll-wrapper {
+        padding-top: 2rem;
     }
 
     .hamburger-icon {
