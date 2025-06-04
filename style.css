@@ -40,16 +40,6 @@ body::before {
     z-index: 1;
 }
 
-/* Top Info */
-.info-top {
-    font-size: clamp(0.6rem, 1vw, 0.75rem);
-    line-height: 1.5;
-    color: #e0e0e0;
-    animation: fadeInTop 1s ease-out forwards;
-    opacity: 0;
-    margin-bottom: 2rem;
-}
-
 /* Main Section */
 .content {
     display: flex;
