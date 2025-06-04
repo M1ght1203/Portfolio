@@ -253,14 +253,19 @@ body::before {
 /* Top Navigation */
 .top-nav {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 1rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    width: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    z-index: 2;
+    padding: 0.5rem 1.5rem;
+    background-color: var(--mobile-menu-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 9999px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
 .nav-left,
