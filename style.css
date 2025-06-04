@@ -99,7 +99,7 @@ body::before {
 
 #career {
     padding: 4rem 2rem;
-    max-width: 900px;
+    width: fit-content;
     margin: auto;
 }
 
@@ -133,7 +133,10 @@ body::before {
     color: var(--footer-text);
     line-height: 1.6;
     list-style-type: disc;
-    margin-left: 1.25rem;
+    list-style-position: inside;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
     margin-bottom: 0.5rem;
 }
 
@@ -335,7 +338,7 @@ body::before {
     transition: transform 0.2s ease;
 }
 
-.theme-toggle input:checked + .switch::before {
+.theme-toggle input:checked+.switch::before {
     transform: translateX(26px);
 }
 
@@ -504,9 +507,12 @@ body::before {
 }
 
 @keyframes bounce {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(5px);
     }
