@@ -133,7 +133,8 @@ body::before {
     color: var(--footer-text);
     line-height: 1.6;
     list-style-type: disc;
-    padding-left: 1.25rem;
+    list-style-position: inside;
+    padding-left: 0;
     margin-left: 0;
     margin-bottom: 0.5rem;
 }
