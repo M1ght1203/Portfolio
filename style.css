@@ -243,20 +243,58 @@ body::before {
     transform: scale(1.05);
 }
 
-/* Theme Toggle Button */
+/* Theme Toggle */
 .theme-toggle {
+    position: relative;
     display: inline-block;
-    padding: 0.4rem 0.8rem;
-    background-color: var(--button-bg);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: clamp(0.8rem, 1vw, 1rem);
-    transition: background-color 0.2s ease;
 }
 
-.theme-toggle:hover {
+.theme-toggle input {
+    display: none;
+}
+
+.theme-toggle .switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 52px;
+    height: 26px;
+    padding: 3px;
+    background-color: var(--button-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    position: relative;
+}
+
+.theme-toggle .switch svg {
+    width: 18px;
+    height: 18px;
+    color: var(--text-color);
+}
+
+.theme-toggle .switch .icon-sun {
+    margin-left: auto;
+}
+
+.theme-toggle .switch::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: var(--text-color);
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.theme-toggle input:checked + .switch::before {
+    transform: translateX(26px);
+}
+
+.theme-toggle:hover .switch {
     background-color: var(--button-bg-hover);
 }
 

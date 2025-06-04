@@ -31,7 +31,18 @@
         <a href="#">Resume</a>
         <a href="https://www.linkedin.com/in/jzheng39/" target="_blank">LinkedIn</a>
         <a href="https://github.com/M1ght1203" target="_blank">GitHub</a>
-        <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">Light Mode</button>
+        <label class="theme-toggle">
+            <input type="checkbox" onclick="toggleTheme()" id="themeToggle" aria-label="Toggle theme">
+            <span class="switch">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 0010.08 9.79z" />
+                </svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5" />
+                    <path d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.95 6.95l-1.41-1.41M6.46 6.46L5.05 5.05m0 13.9l1.41-1.41m11.49-11.49l1.41-1.41" />
+                </svg>
+            </span>
+        </label>
     </nav>
 
     <div class="scroll-wrapper">
@@ -133,7 +144,18 @@
         <a href="#">Resume</a>
         <a href="https://www.linkedin.com/in/jzheng39/" target="_blank">LinkedIn</a>
         <a href="https://github.com/M1ght1203" target="_blank">GitHub</a>
-        <button class="theme-toggle" onclick="toggleTheme()" id="themeToggleMobile">Light Mode</button>
+        <label class="theme-toggle">
+            <input type="checkbox" onclick="toggleTheme()" id="themeToggleMobile" aria-label="Toggle theme">
+            <span class="switch">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 0010.08 9.79z" />
+                </svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5" />
+                    <path d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.95 6.95l-1.41-1.41M6.46 6.46L5.05 5.05m0 13.9l1.41-1.41m11.49-11.49l1.41-1.41" />
+                </svg>
+            </span>
+        </label>
     </div>
 
     <script>
@@ -165,10 +187,10 @@
         }
 
         function toggleTheme() {
-            const body = document.body;
-            const isLight = body.classList.toggle('light-mode');
-            document.querySelectorAll('.theme-toggle').forEach(btn => {
-                btn.textContent = isLight ? 'Dark Mode' : 'Light Mode';
+            const isLight = document.getElementById('themeToggle').checked;
+            document.body.classList.toggle('light-mode', isLight);
+            document.querySelectorAll('.theme-toggle input').forEach(input => {
+                input.checked = isLight;
             });
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
         }
@@ -176,8 +198,8 @@
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'light') {
             document.body.classList.add('light-mode');
-            document.querySelectorAll('.theme-toggle').forEach(btn => {
-                btn.textContent = 'Dark Mode';
+            document.querySelectorAll('.theme-toggle input').forEach(input => {
+                input.checked = true;
             });
         }
     </script>
