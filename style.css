@@ -50,11 +50,11 @@ body::before {
     position: relative;
 }
 
+
 .scroll-down {
     position: absolute;
     bottom: 2rem;
     left: 50%;
-    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,7 +63,7 @@ body::before {
     color: white;
     text-decoration: none;
     font-size: 0.9rem;
-    animation: fadeInUp 1s ease forwards;
+    animation: fadeInUpCentered 1s ease forwards;
     opacity: 0;
 }
 
@@ -313,6 +313,18 @@ body::before {
 
     100% {
         transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUpCentered {
+    0% {
+        transform: translate(-50%, 40px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(-50%, 0);
         opacity: 1;
     }
 }
