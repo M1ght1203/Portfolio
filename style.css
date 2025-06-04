@@ -135,6 +135,7 @@ body::before {
     list-style-type: disc;
     list-style-position: inside;
     padding-left: 0;
+    padding-right: 0;
     margin-left: 0;
     margin-bottom: 0.5rem;
 }
