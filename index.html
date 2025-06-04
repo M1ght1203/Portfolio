@@ -34,14 +34,25 @@
     </nav>
 
     <div class="scroll-wrapper">
-        <!-- Projects -->
-        <div class="content">
+        <!-- Hero -->
+        <section id="hero" class="content hero-section">
             <div class="main-text">
                 <div class="intro">Hey, I'm Jason</div>
                 <div class="name">Software Engineer</div>
                 <div class="focus">Fullstack &amp; Automation</div>
             </div>
 
+            <a href="#projects" class="scroll-down">
+                <span>See projects</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                    viewBox="0 0 24 24" class="chevron">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </a>
+        </section>
+
+        <section id="projects" class="projects-section">
             <div class="footer-timeline">
                 <div>
                     <strong>01. Job Board API – 2025</strong><br />
@@ -98,7 +109,7 @@
                     <a target="_blank" class="project-button disabled">Coming Soon</a>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 
 
@@ -140,6 +151,16 @@
         window.onload = () => {
             document.getElementById("icon-close").style.display = "none";
         };
+
+        const scrollLink = document.querySelector('.scroll-down');
+        if (scrollLink) {
+            scrollLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('projects').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        }
     </script>
 
 </body>

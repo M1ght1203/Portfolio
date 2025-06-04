@@ -40,11 +40,45 @@ body::before {
     z-index: 1;
 }
 
+/* Hero Section */
+.hero-section {
+    min-height: calc(100vh - 7rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+.scroll-down {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.25rem;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    animation: fadeInUpCentered 1s ease forwards;
+    opacity: 0;
+}
+
+.scroll-down .chevron {
+    animation: bounce 1.2s infinite;
+}
+
+.projects-section {
+    padding-top: 3rem;
+}
+
 /* Main Section */
 .content {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
 }
 
 /* Main Intro */
@@ -200,6 +234,14 @@ body::before {
         padding-top: 2rem;
     }
 
+    .hero-section {
+        min-height: calc(100vh - 4rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
     .hamburger-icon {
         position: fixed;
         top: 1.2rem;
@@ -275,6 +317,18 @@ body::before {
     }
 }
 
+@keyframes fadeInUpCentered {
+    0% {
+        transform: translate(-50%, 40px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
 @keyframes revealGrid {
     0% {
         opacity: 0;
@@ -320,5 +374,14 @@ body::before {
     100% {
         transform: translateY(0);
         opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(5px);
     }
 }
