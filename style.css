@@ -203,6 +203,10 @@ body::before {
         display: none;
     }
 
+    .scroll-wrapper {
+        padding-top: 2rem;
+    }
+
     .hamburger-icon {
         position: fixed;
         top: 1.2rem;
