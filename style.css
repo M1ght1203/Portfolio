@@ -4,14 +4,40 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg-color: #0d0f1a;
+    --text-color: #ffffff;
+    --secondary-text: #999999;
+    --footer-text: #d3d3d3;
+    --footer-span: #a0a0b2;
+    --button-bg: #1a1c2b;
+    --button-bg-hover: #292c3e;
+    --border-color: #3c3f50;
+    --mobile-menu-bg: #1a1c2b;
+    --backdrop-bg: rgba(13, 15, 26, 0.7);
+}
+
 html,
 body {
     width: 100%;
     overflow-x: hidden;
     font-family: 'Inter', sans-serif;
-    background-color: #0d0f1a;
-    color: white;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     min-height: 100vh;
+}
+
+.light-mode {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --secondary-text: #555555;
+    --footer-text: #333333;
+    --footer-span: #555555;
+    --button-bg: #e0e0e0;
+    --button-bg-hover: #d0d0d0;
+    --border-color: #cccccc;
+    --mobile-menu-bg: #f9f9f9;
+    --backdrop-bg: rgba(0, 0, 0, 0.4);
 }
 
 body::before {
@@ -60,7 +86,7 @@ body::before {
     align-items: center;
     text-align: center;
     gap: 0.25rem;
-    color: white;
+    color: var(--text-color);
     text-decoration: none;
     font-size: 0.9rem;
     animation: fadeInUpCentered 1s ease forwards;
@@ -100,13 +126,13 @@ body::before {
     font-size: clamp(1rem, 3vw + 0.2rem, 3.5rem);
     font-weight: 600;
     margin-bottom: 0.25rem;
-    color: #999999;
+    color: var(--secondary-text);
 }
 
 .main-text .focus {
     font-size: clamp(0.9rem, 2.5vw + 0.2rem, 3rem);
     font-weight: 600;
-    color: #999999;
+    color: var(--secondary-text);
 }
 
 /* Timeline Footer */
@@ -115,7 +141,7 @@ body::before {
     flex-wrap: wrap;
     justify-content: space-between;
     font-size: clamp(0.7rem, 0.9vw, 0.8rem);
-    color: #d3d3d3;
+    color: var(--footer-text);
     gap: 1rem;
     margin-top: auto;
 }
@@ -157,7 +183,7 @@ body::before {
     display: block;
     margin-top: 0.25rem;
     font-size: clamp(0.6rem, 0.8vw, 0.7rem);
-    color: #a0a0b2;
+    color: var(--footer-span);
 }
 
 .disabled {
@@ -181,7 +207,7 @@ body::before {
 
 .top-nav a {
     font-size: clamp(0.8rem, 1vw, 1rem);
-    color: white;
+    color: var(--text-color);
     letter-spacing: 0.1em;
     text-decoration: none;
     opacity: 0;
@@ -201,20 +227,75 @@ body::before {
     display: inline-block;
     margin-top: 0.75rem;
     padding: 0.4rem 1rem;
-    background-color: #1a1c2b;
-    color: #ffffff;
+    background-color: var(--button-bg);
+    color: var(--text-color);
     font-size: 0.75rem;
     font-weight: 500;
     text-decoration: none;
-    border: 1px solid #3c3f50;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 
 .project-button:hover {
-    background-color: #292c3e;
+    background-color: var(--button-bg-hover);
     transform: scale(1.05);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: relative;
+    display: inline-block;
+}
+
+.theme-toggle input {
+    display: none;
+}
+
+.theme-toggle .switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 52px;
+    height: 26px;
+    padding: 3px;
+    background-color: var(--button-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    position: relative;
+}
+
+.theme-toggle .switch svg {
+    width: 18px;
+    height: 18px;
+    color: var(--text-color);
+}
+
+.theme-toggle .switch .icon-sun {
+    margin-left: auto;
+}
+
+.theme-toggle .switch::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: var(--text-color);
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.theme-toggle input:checked + .switch::before {
+    transform: translateX(26px);
+}
+
+.theme-toggle:hover .switch {
+    background-color: var(--button-bg-hover);
 }
 
 /* Hide mobile elements on larger screens */
@@ -248,7 +329,7 @@ body::before {
         right: 1.2rem;
         z-index: 1001;
         cursor: pointer;
-        color: white;
+        color: var(--text-color);
         display: block;
     }
 
@@ -266,15 +347,15 @@ body::before {
         right: -250px;
         width: 200px;
         height: 100vh;
-        background-color: #1a1c2b;
-        border-left: 1px solid #3c3f50;
+        background-color: var(--mobile-menu-bg);
+        border-left: 1px solid var(--border-color);
         padding: 2rem 1.5rem;
         transition: right 0.3s ease;
         z-index: 1000;
     }
 
     .mobile-menu a {
-        color: white;
+        color: var(--text-color);
         text-decoration: none;
         margin: 1rem 0;
         font-size: 1.1rem;
@@ -290,7 +371,7 @@ body::before {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(13, 15, 26, 0.7);
+        background: var(--backdrop-bg);
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.3s ease;
