@@ -125,7 +125,17 @@ body::before {
 .career-entry .company {
     font-size: 1rem;
     color: var(--secondary-text);
-    margin: 0.25rem 0 0.75rem;
+    margin: 0.25rem 0 0;
+}
+
+.career-entry .location,
+.career-entry .date {
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+}
+
+.career-entry .date {
+    margin-bottom: 0.75rem;
 }
 
 .career-entry .description {
