@@ -232,15 +232,21 @@
             document.getElementById("icon-close").style.display = "none";
         };
 
-        const scrollLink = document.querySelector('.scroll-down');
-        if (scrollLink) {
-            scrollLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                document.getElementById('career').scrollIntoView({
-                    behavior: 'smooth'
-                });
+        // Smooth scroll for all internal links
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetId = link.getAttribute('href').substring(1);
+                if (!targetId) return;
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    if (link.closest('.mobile-menu')) {
+                        toggleMenu();
+                    }
+                }
             });
-        }
+        });
 
         function toggleTheme() {
             const isLight = document.getElementById('themeToggle').checked;
