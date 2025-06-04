@@ -78,11 +78,13 @@ body::before {
 /* Timeline Section */
 .timeline-section {
     padding-top: 3rem;
+    display: flex;
+    justify-content: center;
 }
 
 .work-timeline {
     border-left: 2px solid #3c3f50;
-    margin: 0 0 2rem 1rem;
+    margin: 0 auto 2rem;
     padding-left: 1rem;
     display: flex;
     flex-direction: column;
