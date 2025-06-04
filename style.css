@@ -241,8 +241,8 @@ body::before {
 .top-nav {
     position: fixed;
     top: 1rem;
-    left: 1rem;
-    right: 1rem;
+    left: 1.5rem;
+    right: 1.5rem;
     width: auto;
     display: flex;
     justify-content: space-between;
