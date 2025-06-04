@@ -199,10 +199,16 @@ body::before {
     left: 0;
     width: 100%;
     display: flex;
-    justify-content: flex-end;
-    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
     padding: 1rem 2rem;
     z-index: 2;
+}
+
+.nav-left,
+.nav-right {
+    display: flex;
+    gap: 2rem;
 }
 
 .top-nav a {
@@ -214,13 +220,6 @@ body::before {
     animation: fadeInTop 0.6s ease-out forwards;
 }
 
-.top-nav a:nth-child(2) {
-    animation-delay: 0.1s;
-}
-
-.top-nav a:nth-child(3) {
-    animation-delay: 0.2s;
-}
 
 /* Project Button */
 .project-button {
