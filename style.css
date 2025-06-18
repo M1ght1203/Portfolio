@@ -128,13 +128,13 @@ body::before {
 }
 
 .career-entry h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 3rem;
+    font-weight: 800;
 }
 
 .career-entry .company {
-    font-size: 1.2rem;
-    color: var(--secondary-text);
+    font-size: 3rem;
+    font-weight: 800;
     margin: 0.25rem 0 0;
 }
 
