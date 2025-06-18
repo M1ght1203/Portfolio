@@ -261,12 +261,11 @@ body::before {
     margin: 0;
     background-color: transparent;
     z-index: 1000;
-    transition: background-color 0.3s ease, border-bottom 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .top-nav.scrolled {
     background-color: var(--bg-color);
-    border-bottom: 1px solid var(--border-color);
 }
 
 .nav-left,
