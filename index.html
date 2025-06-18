@@ -249,6 +249,8 @@
 
         heroText.addEventListener('animationend', () => {
             heroText.style.animation = 'none';
+            heroText.style.opacity = '1';
+            heroText.style.transform = 'none';
         });
 
         scroll.on('scroll', (args) => {
