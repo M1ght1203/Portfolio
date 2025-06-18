@@ -244,7 +244,12 @@
         const nav = document.querySelector('.top-nav');
         const heroSection = document.getElementById('hero');
         const heroText = heroSection.querySelector('.main-text');
-        const heroHeight = heroSection.offsetHeight;
+        const careerSection = document.getElementById('career');
+        const fadeEnd = careerSection.offsetTop;
+
+        heroText.addEventListener('animationend', () => {
+            heroText.style.animation = 'none';
+        });
 
         scroll.on('scroll', (args) => {
             const y = Math.max(args.scroll.y, 0);
@@ -255,7 +260,7 @@
                 nav.classList.remove('scrolled');
             }
 
-            const progress = Math.min(y / heroHeight, 1);
+            const progress = Math.min(y / fadeEnd, 1);
             const scale = 1 - progress * 0.1;
             heroText.style.opacity = 1 - progress;
             heroText.style.transform = `scale(${scale})`;
