@@ -244,6 +244,7 @@
         const nav = document.querySelector('.top-nav');
         const heroSection = document.getElementById('hero');
         const heroText = heroSection.querySelector('.main-text');
+        const scrollDown = heroSection.querySelector('.scroll-down');
         const careerSection = document.getElementById('career');
         const fadeEnd = careerSection.offsetTop;
 
@@ -251,6 +252,12 @@
             heroText.style.animation = 'none';
             heroText.style.opacity = '1';
             heroText.style.transform = 'none';
+        });
+
+        scrollDown.addEventListener('animationend', () => {
+            scrollDown.style.animation = 'none';
+            scrollDown.style.opacity = '1';
+            scrollDown.style.transform = 'translate(-50%, 0)';
         });
 
         scroll.on('scroll', (args) => {
@@ -267,6 +274,8 @@
             const scale = 1 - fade * 0.15;
             heroText.style.opacity = 1 - fade;
             heroText.style.transform = `scale(${scale})`;
+            scrollDown.style.opacity = 1 - fade;
+            scrollDown.style.transform = `translate(-50%, 0) scale(${scale})`;
         });
 
         document.querySelectorAll('a[href^="#"]').forEach(link => {
