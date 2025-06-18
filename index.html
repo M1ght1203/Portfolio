@@ -241,6 +241,15 @@
             smooth: true
         });
 
+        const nav = document.querySelector('.top-nav');
+        scroll.on('scroll', (args) => {
+            if (args.scroll.y > 0) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', e => {
                 const targetId = link.getAttribute('href').substring(1);
