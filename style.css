@@ -188,7 +188,7 @@ body::before {
 
 
 .main-text .intro {
-    font-size: clamp(3.5rem, 8vw + 0.5rem, 9rem);
+    font-size: clamp(5.25rem, 12vw + 0.75rem, 13.5rem);
     font-weight: 800;
     margin-bottom: 0.5rem;
 }
