@@ -252,10 +252,21 @@ body::before {
 
 /* Top Navigation */
 .top-nav {
+    position: sticky;
+    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 1rem 1.5rem;
+    padding: 1rem 1.5rem;
+    margin: 0;
+    background-color: transparent;
+    z-index: 1000;
+    transition: background-color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.top-nav.scrolled {
+    background-color: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .nav-left,
