@@ -242,12 +242,21 @@
         });
 
         const nav = document.querySelector('.top-nav');
+        const heroText = document.querySelector('.hero-section .main-text');
+        const careerSection = document.getElementById('career');
+        const fadeEnd = careerSection.offsetTop;
+
         scroll.on('scroll', (args) => {
             if (args.scroll.y > 0) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
             }
+
+            const progress = Math.min(args.scroll.y / fadeEnd, 1);
+            const scale = 1 - progress * 0.1;
+            heroText.style.opacity = 1 - progress;
+            heroText.style.transform = `scale(${scale})`;
         });
 
         document.querySelectorAll('a[href^="#"]').forEach(link => {
