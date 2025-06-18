@@ -40,7 +40,7 @@
             <a href="https://github.com/M1ght1203" target="_blank">GitHub</a>
             <a href="resume/resume.pdf" target="_blank" download>Resume</a>
             <label class="theme-toggle">
-                <input type="checkbox" onclick="toggleTheme()" id="themeToggle" aria-label="Toggle theme" checked>
+                <input type="checkbox" onchange="toggleTheme(this.checked)" id="themeToggle" aria-label="Toggle theme" checked>
                 <span class="switch">
                     <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 0010.08 9.79z" />
@@ -201,7 +201,7 @@
         <a href="https://github.com/M1ght1203" target="_blank">GitHub</a>
         <a href="resume/resume.pdf" target="_blank" download>Resume</a>
         <label class="theme-toggle">
-            <input type="checkbox" onclick="toggleTheme()" id="themeToggleMobile" aria-label="Toggle theme" checked>
+            <input type="checkbox" onchange="toggleTheme(this.checked)" id="themeToggleMobile" aria-label="Toggle theme" checked>
             <span class="switch">
                 <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 0010.08 9.79z" />
@@ -250,8 +250,7 @@
             });
         });
 
-        function toggleTheme() {
-            const isLight = document.getElementById('themeToggle').checked;
+        function toggleTheme(isLight) {
             document.body.classList.toggle('light-mode', isLight);
             document.querySelectorAll('.theme-toggle input').forEach(input => {
                 input.checked = isLight;
