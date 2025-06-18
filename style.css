@@ -154,12 +154,15 @@ body::before {
     font-size: 0.95rem;
     color: var(--footer-text);
     line-height: 1.6;
+    margin-left: 0;
+    margin-bottom: 0.5rem;
+}
+
+.career-entry ul.description {
     list-style-type: disc;
     list-style-position: inside;
     padding-left: 0;
     padding-right: 0;
-    margin-left: 0;
-    margin-bottom: 0.5rem;
 }
 
 .career-entry .tech {
