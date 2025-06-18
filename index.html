@@ -263,8 +263,9 @@
             }
 
             const progress = Math.min(y / fadeEnd, 1);
-            const scale = 1 - progress * 0.1;
-            heroText.style.opacity = 1 - progress;
+            const fade = Math.min(progress * 1.5, 1);
+            const scale = 1 - fade * 0.15;
+            heroText.style.opacity = 1 - fade;
             heroText.style.transform = `scale(${scale})`;
         });
 
