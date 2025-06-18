@@ -270,6 +270,15 @@
                 input.checked = true;
             });
         }
+
+        const topNav = document.querySelector('.top-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 0) {
+                topNav.classList.add('scrolled');
+            } else {
+                topNav.classList.remove('scrolled');
+            }
+        });
     </script>
 
 </body>
