@@ -122,12 +122,9 @@ body::before {
     align-items: flex-start;
 }
 
-.career-left {
-    flex: 0 0 180px;
-}
-
+.career-left,
 .career-right {
-    flex: 1;
+    flex: 1 1 50%;
 }
 
 .career-entry h3 {
