@@ -158,6 +158,10 @@ body::before {
     margin-bottom: 0.5rem;
 }
 
+.career-entry p.description {
+    margin-top: 1rem;
+}
+
 .career-entry ul.description {
     list-style-type: disc;
     list-style-position: inside;
