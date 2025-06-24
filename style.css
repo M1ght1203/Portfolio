@@ -162,6 +162,10 @@ body::before {
     margin-top: 1rem;
 }
 
+.career-entry .half-width {
+    width: 50%;
+}
+
 .career-entry ul.description {
     list-style-type: disc;
     list-style-position: inside;
@@ -477,6 +481,10 @@ body::before {
     .career-entry h3,
     .career-entry .company {
         font-size: 2rem;
+    }
+
+    .career-entry .half-width {
+        width: 100%;
     }
 }
 
