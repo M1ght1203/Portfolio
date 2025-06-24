@@ -473,6 +473,11 @@ body::before {
     .career-entry {
         flex-direction: column;
     }
+
+    .career-entry h3,
+    .career-entry .company {
+        font-size: 2rem;
+    }
 }
 
 /* Animations */
