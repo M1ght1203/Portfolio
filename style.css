@@ -136,9 +136,9 @@ body::before {
 }
 
 .career-entry .company {
-    font-size: inherit;
+    font-size: 2rem;
     font-weight: 800;
-    margin: 0;
+    margin: 0 0 0 0.5rem;
 }
 
 .career-entry .date {
@@ -175,18 +175,6 @@ body::before {
     color: var(--secondary-text);
 }
 
-.career-entry .job-link {
-    color: var(--text-color);
-    text-decoration: none;
-}
-
-.career-entry .job-link:hover {
-    color: var(--footer-span);
-}
-
-.career-entry .dash {
-    margin: 0 0.25rem;
-}
 
 .projects-section {
     padding-top: 3rem;
@@ -488,9 +476,12 @@ body::before {
         flex-direction: column;
     }
 
-    .career-entry h3,
-    .career-entry .company {
+    .career-entry h3 {
         font-size: 2rem;
+    }
+
+    .career-entry .company {
+        font-size: 1.5rem;
     }
 
     .career-entry .date {
