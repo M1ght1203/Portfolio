@@ -114,7 +114,7 @@ body::before {
 
 .career-entry {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     margin: 0;
     opacity: 0;
     transform: translateY(20px);
@@ -135,9 +135,18 @@ body::before {
     margin: 0;
 }
 
+.career-entry h3 .job-link {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.career-entry h3 .job-link:hover {
+    color: var(--footer-span);
+}
+
 .career-entry .company {
-    font-size: 2rem;
-    font-weight: 800;
+    font-size: 0.9rem;
+    color: var(--secondary-text);
     margin: 0 0 0 0.5rem;
 }
 
@@ -481,7 +490,7 @@ body::before {
     }
 
     .career-entry .company {
-        font-size: 1.5rem;
+        font-size: 0.8rem;
     }
 
     .career-entry .date {
