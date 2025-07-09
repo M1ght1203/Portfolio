@@ -163,14 +163,11 @@ body::before {
     line-height: 1.6;
     margin-left: 0;
     margin-bottom: 0.5rem;
-}
-
-.career-entry p.description {
     margin-top: 1rem;
 }
 
 .career-entry .half-width {
-    width: 50%;
+    width: 100%;
 }
 
 .career-entry ul.description {
@@ -484,6 +481,7 @@ body::before {
 
     .career-entry {
         flex-direction: column;
+        gap: 0.5rem;
     }
 
     .career-entry h3 {
