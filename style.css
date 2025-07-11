@@ -186,15 +186,19 @@ body::before {
 }
 
 .career-entry .tech .tag {
-    padding: 0.25rem 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3rem 0.85rem;
     background-color: var(--button-bg);
     border: 1px solid var(--border-color);
     border-radius: 9999px;
     color: var(--text-color);
+    font-family: 'Nunito', 'Inter', sans-serif;
     font-size: 0.8rem;
+    font-weight: 400;
     white-space: nowrap;
     line-height: 1;
-    display: inline-block;
 }
 
 
