@@ -13,6 +13,8 @@
     --button-bg: #1a1c2b;
     --button-bg-hover: #292c3e;
     --border-color: #3c3f50;
+    --tag-bg: #212436;
+    --tag-border: #3c3f50;
     --mobile-menu-bg: #1a1c2b;
     --backdrop-bg: rgba(13, 15, 26, 0.7);
 }
@@ -36,6 +38,8 @@ body {
     --button-bg: #e0e0e0;
     --button-bg-hover: #d0d0d0;
     --border-color: #cccccc;
+    --tag-bg: #f0f0f0;
+    --tag-border: #cccccc;
     --mobile-menu-bg: #f9f9f9;
     --backdrop-bg: rgba(0, 0, 0, 0.4);
 }
@@ -180,6 +184,24 @@ body::before {
 .career-entry .tech {
     font-size: 0.9rem;
     color: var(--secondary-text);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.career-entry .tech .tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3rem 0.85rem;
+    background-color: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    border-radius: 9999px;
+    color: var(--text-color);
+    font-size: 0.8rem;
+    font-weight: 400;
+    white-space: nowrap;
+    line-height: 1;
 }
 
 
