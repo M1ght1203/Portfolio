@@ -21,7 +21,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" />
 
     <!-- Analytics -->
     <script defer src="https://cloud.umami.is/script.js"
@@ -58,7 +57,7 @@
         </div>
     </nav>
 
-    <div class="scroll-wrapper" data-scroll-container>
+    <div class="scroll-wrapper">
         <!-- Hero -->
         <section id="hero" class="content hero-section">
             <div class="main-text">
@@ -253,7 +252,6 @@
         </label>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
     <script>
         function toggleMenu() {
             const menu = document.getElementById("mobileMenu");
@@ -271,11 +269,6 @@
         window.onload = () => {
             document.getElementById("icon-close").style.display = "none";
         };
-
-        const scroll = new LocomotiveScroll({
-            el: document.querySelector('.scroll-wrapper'),
-            smooth: true
-        });
 
         const nav = document.querySelector('.top-nav');
         const heroSection = document.getElementById('hero');
@@ -296,8 +289,8 @@
             scrollDown.style.transform = 'translate(-50%, 0)';
         });
 
-        scroll.on('scroll', (args) => {
-            const y = Math.max(args.scroll.y, 0);
+        function handleScroll() {
+            const y = Math.max(window.scrollY, 0);
 
             if (y > 0) {
                 nav.classList.add('scrolled');
@@ -312,7 +305,10 @@
             heroText.style.transform = `scale(${scale})`;
             scrollDown.style.opacity = 1 - fade;
             scrollDown.style.transform = `translate(-50%, 0) scale(${scale})`;
-        });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
 
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', e => {
@@ -321,7 +317,7 @@
                 const targetElement = document.getElementById(targetId);
                 if (targetElement) {
                     e.preventDefault();
-                    scroll.scrollTo(targetElement);
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
                     if (link.closest('.mobile-menu')) {
                         toggleMenu();
                     }
