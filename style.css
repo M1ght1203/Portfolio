@@ -47,7 +47,7 @@ body {
 
 
 .scroll-wrapper {
-    padding: 2rem 1.5rem;
+    padding: 2rem 3rem;
     position: relative;
     z-index: 1;
 }
@@ -297,7 +297,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem;
+    padding: 1rem 3rem;
     margin: 0;
     background-color: transparent;
     z-index: 1000;
@@ -451,7 +451,7 @@ body {
         height: 100vh;
         background-color: var(--mobile-menu-bg);
         border-left: 1px solid var(--border-color);
-        padding: 2rem 1.5rem;
+        padding: 2rem 3rem;
         transition: right 0.3s ease;
         z-index: 1000;
     }
