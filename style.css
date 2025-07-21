@@ -191,46 +191,6 @@ body {
     padding-top: 3rem;
 }
 
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.5rem;
-}
-
-.project-card {
-    background-color: #ffffff;
-    border: 1px solid var(--tag-border);
-    border-radius: 8px;
-    padding: 1rem;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInBottom 0.8s ease-out forwards;
-}
-
-.project-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-color);
-}
-
-.project-card .year {
-    font-weight: normal;
-    font-size: 0.8rem;
-    color: var(--secondary-text);
-    margin-left: 0.25rem;
-}
-
-.project-card .description {
-    font-size: 0.85rem;
-    color: var(--footer-text);
-    margin-bottom: 0.25rem;
-}
-
-.project-card .tech {
-    font-size: 0.75rem;
-    color: var(--footer-span);
-}
-
 /* Main Section */
 .content {
     display: flex;
