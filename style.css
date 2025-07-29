@@ -189,6 +189,54 @@ body {
     line-height: 1;
 }
 
+/* Project Entries */
+.project-entry {
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+    align-items: flex-start;
+    border-top: 1px solid var(--border-color);
+    padding: 4rem 0;
+}
+
+.project-left,
+.project-right {
+    flex: 1 1 50%;
+}
+
+.project-entry h3 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.project-entry h3 .project-link {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.project-entry h3 .project-link:hover {
+    color: var(--footer-span);
+}
+
+.project-entry .date {
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+    margin-bottom: 0.25rem;
+}
+
+.project-entry .description {
+    font-size: 0.95rem;
+    color: var(--footer-text);
+    line-height: 1.6;
+    margin-left: 0;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+}
+
 
 .projects-section {
     padding-top: 3rem;
@@ -510,6 +558,21 @@ body {
 
     .career-entry .half-width {
         width: 100%;
+    }
+
+    .project-entry {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .project-entry h3 {
+        font-size: 2rem;
+    }
+
+    .project-entry .date {
+        font-size: 0.8rem;
+        color: var(--secondary-text);
+        margin-bottom: 0.25rem;
     }
 }
 
