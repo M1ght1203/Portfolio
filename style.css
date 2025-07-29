@@ -12,6 +12,7 @@
     --footer-span: #a0a0b2;
     --button-bg: #1a1c2b;
     --button-bg-hover: #292c3e;
+    --card-bg: #13151e;
     --border-color: #3c3f50;
     --tag-bg: #212436;
     --tag-border: #3c3f50;
@@ -38,6 +39,7 @@ body {
     --footer-span: #555555;
     --button-bg: #e0e0e0;
     --button-bg-hover: #d0d0d0;
+    --card-bg: #ffffff;
     --border-color: #cccccc;
     --tag-bg: #f0f0f0;
     --tag-border: #cccccc;
@@ -104,13 +106,15 @@ body {
 .career-entry {
     display: flex;
     gap: 1rem;
-    margin: 0;
+    margin: 2rem 0;
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.6s ease-out forwards;
     align-items: flex-start;
-    border-top: 1px solid var(--border-color);
-    padding: 4rem 0;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
 }
 
 .career-left,
@@ -492,6 +496,7 @@ body {
     .career-entry {
         flex-direction: column;
         gap: 0.5rem;
+        padding: 1.5rem;
     }
 
     .career-entry h3 {
