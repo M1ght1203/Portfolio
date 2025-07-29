@@ -597,3 +597,95 @@ body {
         transform: translateY(5px);
     }
 }
+
+/* Vertical Timeline */
+.vertical-timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin: 0;
+}
+
+.vertical-timeline::before {
+    content: "";
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #e0e0e0;
+}
+
+.vertical-timeline .timeline-item {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 2rem;
+}
+
+.vertical-timeline .timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.vertical-timeline .timeline-node {
+    position: absolute;
+    left: 0.9rem;
+    top: 0.5rem;
+    width: 12px;
+    height: 12px;
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 50%;
+}
+
+.vertical-timeline .timeline-card {
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+}
+
+.vertical-timeline .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.vertical-timeline .job-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.vertical-timeline .company {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555555;
+}
+
+.vertical-timeline .dates {
+    font-size: 0.85rem;
+    color: #555555;
+    text-align: right;
+}
+
+.vertical-timeline .description {
+    font-size: 0.9rem;
+    color: #333333;
+    line-height: 1.5;
+}
+
+.vertical-timeline .skills {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.vertical-timeline .skill-tag {
+    background-color: #f2f2f2;
+    color: #000000;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
