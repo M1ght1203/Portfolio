@@ -213,7 +213,7 @@ body {
 
 
 .main-text .intro {
-    font-size: clamp(4rem, 10vw + 0.75rem, 12rem);
+    font-size: clamp(3rem, 8vw + 0.5rem, 8rem);
     font-weight: 800;
     margin-bottom: 0.5rem;
 }
