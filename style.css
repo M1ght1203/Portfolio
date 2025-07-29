@@ -627,7 +627,7 @@ body {
 
 .vertical-timeline .timeline-node {
     position: absolute;
-    left: 1rem;
+    left: calc(1rem - 2px); /* offset 2px to account for node border */
     top: 0.5rem;
     transform: translateX(-50%);
     width: 12px;
