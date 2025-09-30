@@ -308,6 +308,10 @@
         const scrollDown = heroSection.querySelector('.scroll-down');
         const careerSection = document.getElementById('career');
         const fadeEnd = careerSection.offsetTop;
+        const scrollDelta = 5;
+        const navHideDelay = 200;
+        let lastScrollY = window.scrollY;
+        let navHideTimeout;
 
         heroText.addEventListener('animationend', () => {
             heroText.style.animation = 'none';
@@ -328,7 +332,22 @@
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
+                nav.classList.remove('hidden');
             }
+
+            if (y > lastScrollY + scrollDelta) {
+                clearTimeout(navHideTimeout);
+                navHideTimeout = setTimeout(() => {
+                    if (window.scrollY > nav.offsetHeight) {
+                        nav.classList.add('hidden');
+                    }
+                }, navHideDelay);
+            } else if (y < lastScrollY - scrollDelta) {
+                clearTimeout(navHideTimeout);
+                nav.classList.remove('hidden');
+            }
+
+            lastScrollY = y;
 
             const progress = Math.min(y / fadeEnd, 1);
             const fade = Math.min(progress * 1.5, 1);
