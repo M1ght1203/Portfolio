@@ -28,6 +28,7 @@ body {
     color: var(--text-color);
     min-height: 100vh;
     scroll-behavior: smooth;
+    margin-top: 28px;
 }
 
 .light-mode {
