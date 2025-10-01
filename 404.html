@@ -23,6 +23,14 @@
         </p>
         <a class="not-found__button" href="/">Back to Home</a>
     </main>
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.remove('light-mode');
+        } else {
+            document.body.classList.add('light-mode');
+        }
+    </script>
 </body>
 
 </html>

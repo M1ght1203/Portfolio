@@ -684,8 +684,8 @@ body.not-found-page {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #ffffff;
-    color: #000000;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     padding: 2rem;
 }
 
@@ -707,7 +707,7 @@ body.not-found-page {
 
 .not-found__message {
     font-size: clamp(1rem, 3vw, 1.25rem);
-    color: #4a4a4a;
+    color: var(--secondary-text);
 }
 
 .not-found__button {
@@ -715,8 +715,8 @@ body.not-found-page {
     align-items: center;
     justify-content: center;
     padding: 0.85rem 2.5rem;
-    background-color: #000000;
-    color: #ffffff;
+    background-color: var(--button-bg);
+    color: var(--text-color);
     text-decoration: none;
     font-size: 1rem;
     font-weight: 600;
@@ -725,13 +725,13 @@ body.not-found-page {
 
 .not-found__button:hover,
 .not-found__button:focus {
-    background-color: #1a1a1a;
+    background-color: var(--button-bg-hover);
     transform: translateY(-2px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .not-found__button:focus {
-    outline: 2px solid #1a1a1a;
+    outline: 2px solid var(--text-color);
     outline-offset: 4px;
 }
 
