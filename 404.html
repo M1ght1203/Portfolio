@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/style.css" />
 </head>
 
 <body class="light-mode not-found-page">
@@ -23,6 +23,13 @@
         </p>
         <a class="not-found__button" href="/">Back to Home</a>
     </main>
+    <script>
+        (function ensureCanonical404() {
+            if (!window.location.pathname.endsWith('/404.html')) {
+                window.location.replace('/404.html');
+            }
+        })();
+    </script>
 </body>
 
 </html>
