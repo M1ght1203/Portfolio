@@ -677,3 +677,74 @@ body {
         transform: translateY(5px);
     }
 }
+
+/* 404 Page */
+body.not-found-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 2rem;
+}
+
+.not-found {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 32rem;
+}
+
+.not-found__title {
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.not-found__message {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    color: #4a4a4a;
+}
+
+.not-found__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 2.5rem;
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.not-found__button:hover,
+.not-found__button:focus {
+    background-color: #1a1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.not-found__button:focus {
+    outline: 2px solid #1a1a1a;
+    outline-offset: 4px;
+}
+
+@media (max-width: 480px) {
+    body.not-found-page {
+        padding: 1.5rem;
+    }
+
+    .not-found {
+        gap: 1.25rem;
+    }
+
+    .not-found__button {
+        width: 100%;
+    }
+}
