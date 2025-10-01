@@ -312,6 +312,12 @@
         const navHideDelay = 200;
         let lastScrollY = window.scrollY;
         let navHideTimeout;
+        let navScrollThreshold = 0;
+
+        function updateNavScrollThreshold() {
+            const doubledNavHeight = nav.offsetHeight * 2;
+            navScrollThreshold = Math.max(doubledNavHeight, 120);
+        }
 
         heroText.addEventListener('animationend', () => {
             heroText.style.animation = 'none';
@@ -328,7 +334,7 @@
         function handleScroll() {
             const y = Math.max(window.scrollY, 0);
 
-            if (y > 0) {
+            if (y > navScrollThreshold) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
@@ -358,6 +364,11 @@
             scrollDown.style.transform = `translate(-50%, 0) scale(${scale})`;
         }
 
+        updateNavScrollThreshold();
+        window.addEventListener('resize', () => {
+            updateNavScrollThreshold();
+            handleScroll();
+        });
         window.addEventListener('scroll', handleScroll);
         handleScroll();
 
