@@ -50,14 +50,6 @@
                 <div class="name">Software Engineer</div>
             </div>
 
-            <a href="#career" class="scroll-down">
-                <span>My Career Journey</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
-                    class="chevron">
-                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-            </a>
         </section>
 
         <section id="career">
@@ -275,7 +267,6 @@
         const nav = document.querySelector('.top-nav');
         const heroSection = document.getElementById('hero');
         const heroText = heroSection.querySelector('.main-text');
-        const scrollDown = heroSection.querySelector('.scroll-down');
         const careerSection = document.getElementById('career');
         const fadeEnd = careerSection.offsetTop;
         const scrollDelta = 5;
@@ -295,12 +286,6 @@
             heroText.style.animation = 'none';
             heroText.style.opacity = '1';
             heroText.style.transform = 'none';
-        });
-
-        scrollDown.addEventListener('animationend', () => {
-            scrollDown.style.animation = 'none';
-            scrollDown.style.opacity = '1';
-            scrollDown.style.transform = 'translate(-50%, 0)';
         });
 
         function handleScroll() {
@@ -335,8 +320,6 @@
             const scale = 1 - fade * 0.15;
             heroText.style.opacity = 1 - fade;
             heroText.style.transform = `scale(${scale})`;
-            scrollDown.style.opacity = 1 - fade;
-            scrollDown.style.transform = `translate(-50%, 0) scale(${scale})`;
         }
 
         updateNavMetrics();
