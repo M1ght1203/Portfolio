@@ -5,35 +5,6 @@
 }
 
 :root {
-    --bg-color: #0d0f1a;
-    --text-color: #ffffff;
-    --secondary-text: #999999;
-    --footer-text: #d3d3d3;
-    --footer-span: #a0a0b2;
-    --button-bg: #1a1c2b;
-    --button-bg-hover: #292c3e;
-    --border-color: #3c3f50;
-    --tag-bg: #212436;
-    --tag-border: #3c3f50;
-    --mobile-menu-bg: #1a1c2b;
-    --backdrop-bg: rgba(13, 15, 26, 0.7);
-    --nav-background: rgba(13, 15, 26, 0.85);
-    --nav-background-scrolled: #ffffff;
-    --nav-text-color-scrolled: #000000;
-}
-
-html,
-body {
-    width: 100%;
-    overflow-x: hidden;
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    min-height: 100vh;
-    scroll-behavior: smooth;
-}
-
-.light-mode {
     --bg-color: #ffffff;
     --text-color: #000000;
     --secondary-text: #555555;
@@ -49,6 +20,17 @@ body {
     --nav-background: rgba(255, 255, 255, 0.92);
     --nav-background-scrolled: #000000;
     --nav-text-color-scrolled: #ffffff;
+}
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    scroll-behavior: smooth;
 }
 
 
@@ -411,60 +393,7 @@ body {
     transform: scale(1.05);
 }
 
-/* Theme Toggle */
-.theme-toggle {
-    position: relative;
-    display: inline-block;
-}
-
-.theme-toggle input {
-    display: none;
-}
-
-.theme-toggle .switch {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 52px;
-    height: 26px;
-    padding: 3px;
-    background-color: var(--button-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 13px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    position: relative;
-}
-
-.theme-toggle .switch svg {
-    width: 18px;
-    height: 18px;
-    color: var(--nav-foreground, var(--text-color));
-}
-
-.theme-toggle .switch .icon-sun {
-    margin-left: auto;
-}
-
-.theme-toggle .switch::before {
-    content: "";
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 20px;
-    height: 20px;
-    background: var(--nav-foreground, var(--text-color));
-    border-radius: 50%;
-    transition: transform 0.2s ease;
-}
-
-.theme-toggle input:checked+.switch::before {
-    transform: translateX(26px);
-}
-
-.theme-toggle:hover .switch {
-    background-color: var(--button-bg-hover);
-}
+/* Theme toggle removed */
 
 /* Hide mobile elements on larger screens */
 .hamburger-icon,
