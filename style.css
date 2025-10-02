@@ -87,7 +87,7 @@ body {
     min-width: 100%;
     min-height: 100%;
     border: 0;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(1.2);
 }
 
 
