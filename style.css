@@ -54,10 +54,11 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-start;
     position: relative;
     overflow: hidden;
+    padding: clamp(5rem, 11vw, 8rem) clamp(1.5rem, 6vw, 5rem) clamp(7rem, 16vw, 11rem);
 }
 
 .hero-section::after {
@@ -253,38 +254,29 @@ body {
 
 /* Main Intro */
 .main-text {
-    line-height: 1.2;
+    line-height: 1.1;
     animation: fadeInUp 1s ease forwards;
     opacity: 0;
-    text-align: center;
-    margin: auto 0;
+    text-align: left;
+    margin: 0;
     transition: opacity 0.2s ease, transform 0.2s ease;
-    transform-origin: center;
     position: relative;
     z-index: 1;
     color: #ffffff;
+    max-width: min(48rem, 90vw);
 }
 
-
-.main-text .intro {
-    font-size: clamp(3rem, 8vw + 0.5rem, 8rem);
+.hero-title {
+    font-size: clamp(3.25rem, 9vw, 6.5rem);
     font-weight: 800;
-    margin-bottom: 0.5rem;
+    letter-spacing: -0.03em;
 }
 
-
-.main-text .name {
-    font-size: clamp(1.5rem, 5vw + 0.2rem, 5rem);
-    font-weight: 600;
-    margin-bottom: 0.25rem;
+.hero-subtitle {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: 500;
     color: rgba(255, 255, 255, 0.85);
-}
-
-
-.main-text .focus {
-    font-size: clamp(1.4rem, 4vw + 0.2rem, 4.5rem);
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.8);
+    margin-top: clamp(0.75rem, 2vw, 1.5rem);
 }
 
 /* Timeline Footer */
