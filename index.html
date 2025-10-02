@@ -312,6 +312,14 @@
         const navHideDelay = 200;
         let lastScrollY = window.scrollY;
         let navHideTimeout;
+        let navScrollThreshold = 0;
+        let navHideStart = 0;
+
+        function updateNavMetrics() {
+            const doubledNavHeight = nav.offsetHeight * 2;
+            navScrollThreshold = Math.max(doubledNavHeight, 120);
+            navHideStart = Math.max(careerSection.offsetTop - nav.offsetHeight, navScrollThreshold);
+        }
 
         heroText.addEventListener('animationend', () => {
             heroText.style.animation = 'none';
@@ -328,17 +336,20 @@
         function handleScroll() {
             const y = Math.max(window.scrollY, 0);
 
-            if (y > 0) {
+            if (y > navScrollThreshold) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
                 nav.classList.remove('hidden');
             }
 
-            if (y > lastScrollY + scrollDelta) {
+            if (y <= navHideStart) {
+                clearTimeout(navHideTimeout);
+                nav.classList.remove('hidden');
+            } else if (y > lastScrollY + scrollDelta) {
                 clearTimeout(navHideTimeout);
                 navHideTimeout = setTimeout(() => {
-                    if (window.scrollY > nav.offsetHeight) {
+                    if (window.scrollY > navHideStart) {
                         nav.classList.add('hidden');
                     }
                 }, navHideDelay);
@@ -358,6 +369,11 @@
             scrollDown.style.transform = `translate(-50%, 0) scale(${scale})`;
         }
 
+        updateNavMetrics();
+        window.addEventListener('resize', () => {
+            updateNavMetrics();
+            handleScroll();
+        });
         window.addEventListener('scroll', handleScroll);
         handleScroll();
 
