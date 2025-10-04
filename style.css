@@ -58,7 +58,7 @@ body {
     align-items: flex-start;
     position: relative;
     overflow: hidden;
-    padding: clamp(4rem, 10vw, 6rem) clamp(1.5rem, 6vw, 5rem) clamp(2.5rem, 8vw, 4rem);
+    padding: 0;
     margin: -28px -28px 0;
 }
 
