@@ -18,8 +18,8 @@
     --mobile-menu-bg: #f9f9f9;
     --backdrop-bg: rgba(0, 0, 0, 0.4);
     --nav-background: rgba(255, 255, 255, 0.92);
-    --nav-background-scrolled: #000000;
-    --nav-text-color-scrolled: #ffffff;
+    --nav-background-scrolled: #ffffff;
+    --nav-text-color-scrolled: #000000;
 }
 
 html,
@@ -364,6 +364,10 @@ body {
     background-color: var(--nav-background-scrolled);
     --nav-foreground: var(--nav-text-color-scrolled);
     text-shadow: none;
+    margin: 28px;
+    width: calc(100% - 56px);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
 }
 
 .nav-left,
