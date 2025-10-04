@@ -58,7 +58,7 @@ body {
     align-items: flex-start;
     position: relative;
     overflow: hidden;
-    padding: clamp(4rem, 10vw, 6rem) clamp(1.5rem, 6vw, 5rem) clamp(2.5rem, 8vw, 4rem);
+    padding: 28px;
     margin: -28px -28px 0;
 }
 
@@ -280,7 +280,7 @@ body {
     font-size: clamp(1.5rem, 4vw, 3rem);
     font-weight: 500;
     color: rgba(255, 255, 255, 0.85);
-    margin-top: clamp(0.75rem, 2vw, 1.5rem);
+    margin-top: clamp(0.25rem, 1vw, 0.75rem);
 }
 
 /* Timeline Footer */
