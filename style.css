@@ -58,7 +58,7 @@ body {
     align-items: flex-start;
     position: relative;
     overflow: hidden;
-    padding: clamp(5rem, 11vw, 8rem) clamp(1.5rem, 6vw, 5rem) clamp(7rem, 16vw, 11rem);
+    padding: clamp(4rem, 10vw, 6rem) clamp(1.5rem, 6vw, 5rem) clamp(2.5rem, 8vw, 4rem);
 }
 
 .hero-section::after {
@@ -259,6 +259,8 @@ body {
     opacity: 0;
     text-align: left;
     margin: 0;
+    margin-top: auto;
+    align-self: flex-start;
     transition: opacity 0.2s ease, transform 0.2s ease;
     position: relative;
     z-index: 1;
@@ -431,8 +433,9 @@ body {
         min-height: calc(100vh - 4rem);
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding: clamp(3rem, 12vw, 5rem) 1.5rem clamp(2rem, 10vw, 3rem);
     }
 
     .hamburger-icon {
