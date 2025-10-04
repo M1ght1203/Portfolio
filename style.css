@@ -58,7 +58,7 @@ body {
     align-items: flex-start;
     position: relative;
     overflow: hidden;
-    padding: 0;
+    padding: 28px;
     margin: -28px -28px 0;
 }
 
