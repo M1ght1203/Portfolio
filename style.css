@@ -347,13 +347,13 @@ body {
     padding: 1.25rem 2.5rem;
     margin: 0;
     border-radius: 16px;
-    background-color: var(--nav-background);
+    background-color: var(--nav-background-scrolled);
     color: var(--nav-text-color-scrolled);
     z-index: 1000;
     box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
-    opacity: 0;
-    pointer-events: none;
-    --nav-translate-y: calc(-100% - 28px);
+    opacity: 1;
+    pointer-events: auto;
+    --nav-translate-y: 0;
     transform: translate3d(-50%, var(--nav-translate-y), 0);
     transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
     text-shadow: none;
@@ -367,9 +367,6 @@ body {
 
 .top-nav.scrolled {
     background-color: var(--nav-background-scrolled);
-    opacity: 1;
-    pointer-events: auto;
-    --nav-translate-y: 0;
 }
 
 .nav-left,
