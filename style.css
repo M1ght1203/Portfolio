@@ -347,16 +347,16 @@ body {
     padding: 1.25rem 2.5rem;
     margin: 0;
     border-radius: 16px;
-    background-color: var(--nav-background-scrolled);
-    color: var(--nav-text-color-scrolled);
+    background-color: transparent;
+    color: #ffffff;
     z-index: 1000;
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    box-shadow: none;
     opacity: 1;
     pointer-events: auto;
     --nav-translate-y: 0;
     transform: translate3d(-50%, var(--nav-translate-y), 0);
-    transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
-    text-shadow: none;
+    transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease, text-shadow 0.4s ease;
+    text-shadow: 0 2px 6px rgba(15, 23, 42, 0.35);
 }
 
 .top-nav.hidden {
@@ -367,6 +367,9 @@ body {
 
 .top-nav.scrolled {
     background-color: var(--nav-background-scrolled);
+    color: var(--nav-text-color-scrolled);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    text-shadow: none;
 }
 
 .nav-left,
