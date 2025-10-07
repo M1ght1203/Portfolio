@@ -422,6 +422,17 @@ body {
     box-shadow: none;
 }
 
+.top-nav.scrolled .nav-right a {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.top-nav.scrolled .nav-right a:hover,
+.top-nav.scrolled .nav-right a:focus-visible {
+    background-color: #111111;
+    color: #ffffff;
+}
+
 
 /* Project Button */
 .project-button {
