@@ -404,15 +404,6 @@ body {
     flex: 1 1 auto;
 }
 
-.nav-left .nav-dropdown::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    height: 1.25rem;
-}
-
 .nav-left .dropdown-toggle {
     display: inline-flex;
     align-items: center;
