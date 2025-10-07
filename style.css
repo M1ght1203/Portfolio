@@ -458,7 +458,7 @@ body {
     width: calc(100% - 56px);
     background: #ffffff;
     color: var(--text-color);
-    border-radius: 16px;
+    border-radius: 0;
     box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
     border: 1px solid rgba(15, 23, 42, 0.08);
     opacity: 0;
