@@ -450,8 +450,8 @@ body {
     top: calc(100% + 1.25rem);
     left: 50%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     gap: 2.5rem;
     flex-wrap: wrap;
     padding: 1.5rem 2.5rem;
