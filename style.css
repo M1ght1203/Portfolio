@@ -399,7 +399,6 @@ body {
 }
 
 .nav-left .nav-dropdown {
-    position: relative;
     display: flex;
     align-items: center;
     flex: 1 1 auto;
@@ -467,6 +466,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: flex-start;
     gap: 2rem;
     padding: 1.5rem 2.5rem;
     width: 100%;
