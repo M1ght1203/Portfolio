@@ -399,6 +399,7 @@ body {
 }
 
 .nav-left .nav-dropdown {
+    position: relative;
     display: flex;
     align-items: center;
     flex: 1 1 auto;
@@ -451,7 +452,7 @@ body {
 
 .nav-left .dropdown-menu {
     position: absolute;
-    top: calc(100% + 1.25rem);
+    top: 100%;
     left: 0;
     right: 0;
     display: flex;
@@ -473,7 +474,9 @@ body {
 }
 
 .nav-left .nav-dropdown:hover .dropdown-menu,
-.nav-left .nav-dropdown:focus-within .dropdown-menu {
+.nav-left .nav-dropdown:focus-within .dropdown-menu,
+.nav-left .dropdown-menu:hover,
+.nav-left .dropdown-menu:focus-within {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
