@@ -395,9 +395,18 @@ body {
 }
 
 .nav-left .nav-dropdown {
-    position: static;
+    position: relative;
     display: flex;
     align-items: center;
+}
+
+.nav-left .nav-dropdown::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 1.25rem;
 }
 
 .nav-left .dropdown-toggle {
