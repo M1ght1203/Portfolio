@@ -493,7 +493,7 @@ body {
         right: 1.2rem;
         z-index: 1001;
         cursor: pointer;
-        color: var(--text-color);
+        color: #ffffff;
         display: block;
     }
 
