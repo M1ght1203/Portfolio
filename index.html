@@ -46,6 +46,11 @@
         <!-- Hero -->
         <section id="hero" class="content hero-section">
             <div class="hero-video" aria-hidden="true">
+                <img
+                    class="hero-fallback"
+                    src="images/hero-fallback.jpg"
+                    alt="Abstract dark gradient background"
+                />
                 <iframe
                     src="https://www.youtube.com/embed/qol_gS1txGs?autoplay=1&mute=1&controls=0&loop=1&playlist=qol_gS1txGs&modestbranding=1&playsinline=1&rel=0"
                     title="Landing page background video"
@@ -60,7 +65,6 @@
             </div>
 
         </section>
-
         <section id="career" class="section-container">
             <h2 class="section-title">Career</h2>
             <div class="career-entry">
@@ -272,6 +276,17 @@
         window.onload = () => {
             document.getElementById("icon-close").style.display = "none";
         };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroVideo = document.querySelector('.hero-video');
+            const iframe = heroVideo ? heroVideo.querySelector('iframe') : null;
+
+            if (heroVideo && iframe) {
+                iframe.addEventListener('load', () => {
+                    heroVideo.classList.add('video-loaded');
+                });
+            }
+        });
 
         const nav = document.querySelector('.top-nav');
         const heroSection = document.getElementById('hero');
