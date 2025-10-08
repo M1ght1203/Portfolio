@@ -261,11 +261,13 @@
         function toggleMenu() {
             const menu = document.getElementById("mobileMenu");
             const backdrop = document.querySelector(".mobile-backdrop");
+            const hamburgerToggle = document.querySelector(".hamburger-icon");
             const iconHamburger = document.getElementById("icon-hamburger");
             const iconClose = document.getElementById("icon-close");
 
             const isOpen = menu.classList.toggle("show");
             backdrop.classList.toggle("visible");
+            hamburgerToggle.classList.toggle("open", isOpen);
             iconHamburger.style.display = isOpen ? "none" : "block";
             iconClose.style.display = isOpen ? "block" : "none";
         }
@@ -273,6 +275,7 @@
         // Initial state
         window.onload = () => {
             document.getElementById("icon-close").style.display = "none";
+            document.querySelector(".hamburger-icon").classList.remove("open");
         };
 
         document.addEventListener('DOMContentLoaded', () => {
