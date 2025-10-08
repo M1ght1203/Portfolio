@@ -536,6 +536,27 @@ body {
         text-align: left;
     }
 
+    .mobile-menu .mobile-resume {
+        margin-top: auto;
+        align-self: center;
+        padding: 0.6rem 1.4rem;
+        background-color: #000000;
+        color: #ffffff;
+        border: none;
+        border-radius: 0;
+        text-align: center;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .mobile-menu .mobile-resume:hover,
+    .mobile-menu .mobile-resume:focus-visible {
+        background-color: #111111;
+        color: #ffffff;
+    }
+
     .mobile-menu.show {
         transform: translateY(0);
     }
