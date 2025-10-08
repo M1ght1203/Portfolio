@@ -497,6 +497,10 @@ body {
         display: block;
     }
 
+    .hamburger-icon.open {
+        color: #000000;
+    }
+
     .hamburger-icon svg {
         width: 30px;
         height: 30px;
