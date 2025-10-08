@@ -510,8 +510,8 @@ body {
     .mobile-menu {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        align-items: flex-start;
+        justify-content: flex-start;
         gap: 1.5rem;
         position: fixed;
         top: 0;
@@ -531,6 +531,8 @@ body {
         text-decoration: none;
         margin: 0;
         font-size: 1.2rem;
+        width: 100%;
+        text-align: left;
     }
 
     .mobile-menu.show {
