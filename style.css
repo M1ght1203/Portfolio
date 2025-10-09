@@ -123,6 +123,10 @@ body {
     text-align: left;
 }
 
+#career .section-title {
+    font-size: clamp(3.25rem, 9vw, 6.5rem);
+}
+
 .career-entry {
     display: flex;
     gap: 1rem;
