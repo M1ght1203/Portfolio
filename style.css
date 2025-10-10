@@ -45,8 +45,8 @@ body {
 
 .section-container {
     width: 100%;
-    padding: 0 2.5rem;
-    margin: 0 auto;
+    padding: 28px;
+    margin: -28px -28px 0;
 }
 
 /* Hero Section */
@@ -111,9 +111,8 @@ body {
 
 
 #career {
-    padding: 4rem 0;
+    padding: 4rem 28px;
     width: 100%;
-    margin: 0;
 }
 
 .section-title {
