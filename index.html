@@ -393,49 +393,104 @@
 
         const carousel = document.querySelector('.image-carousel');
         if (carousel) {
-            let isPointerDown = false;
-            let startX = 0;
-            let scrollStart = 0;
+            const dragState = {
+                active: false,
+                startX: 0,
+                startScrollLeft: 0,
+            };
 
-            const onPointerDown = event => {
-                if (event.pointerType === 'mouse' && event.button !== 0) return;
-
-                isPointerDown = true;
+            const startDrag = clientX => {
+                dragState.active = true;
+                dragState.startX = clientX;
+                dragState.startScrollLeft = carousel.scrollLeft;
                 carousel.classList.add('is-dragging');
-                startX = event.clientX;
-                scrollStart = carousel.scrollLeft;
-                if (carousel.setPointerCapture) {
-                    carousel.setPointerCapture(event.pointerId);
-                }
             };
 
-            const onPointerMove = event => {
-                if (!isPointerDown) return;
+            const moveDrag = clientX => {
+                if (!dragState.active) return;
 
-                event.preventDefault();
-                const deltaX = event.clientX - startX;
-                carousel.scrollLeft = scrollStart - deltaX;
+                const deltaX = clientX - dragState.startX;
+                carousel.scrollLeft = dragState.startScrollLeft - deltaX;
             };
 
-            const releasePointer = event => {
-                if (!isPointerDown) return;
+            const endDrag = () => {
+                if (!dragState.active) return;
 
-                isPointerDown = false;
+                dragState.active = false;
                 carousel.classList.remove('is-dragging');
-                if (carousel.releasePointerCapture) {
-                    try {
-                        carousel.releasePointerCapture(event.pointerId);
-                    } catch (error) {
-                        // Ignore errors when capture isn't active.
-                    }
-                }
             };
 
-            carousel.addEventListener('pointerdown', onPointerDown);
-            carousel.addEventListener('pointermove', onPointerMove, { passive: false });
-            carousel.addEventListener('pointerup', releasePointer);
-            carousel.addEventListener('pointerleave', releasePointer);
-            carousel.addEventListener('pointercancel', releasePointer);
+            if (window.PointerEvent) {
+                const handlePointerUp = event => {
+                    if (!dragState.active) return;
+
+                    try {
+                        carousel.releasePointerCapture?.(event.pointerId);
+                    } catch (error) {
+                        // Ignore errors when pointer capture is not active.
+                    }
+                    endDrag();
+                };
+
+                carousel.addEventListener('pointerdown', event => {
+                    if (event.pointerType === 'mouse' && event.button !== 0) return;
+
+                    event.preventDefault();
+                    startDrag(event.clientX);
+                    carousel.setPointerCapture?.(event.pointerId);
+                });
+
+                carousel.addEventListener('pointermove', event => {
+                    if (!dragState.active) return;
+
+                    event.preventDefault();
+                    moveDrag(event.clientX);
+                }, { passive: false });
+
+                window.addEventListener('pointerup', handlePointerUp);
+                window.addEventListener('pointercancel', handlePointerUp);
+                window.addEventListener('pointerleave', handlePointerUp);
+            } else {
+                const handleMouseMove = event => {
+                    moveDrag(event.clientX);
+                };
+
+                const handleMouseUp = () => {
+                    document.removeEventListener('mousemove', handleMouseMove);
+                    document.removeEventListener('mouseup', handleMouseUp);
+                    endDrag();
+                };
+
+                carousel.addEventListener('mousedown', event => {
+                    if (event.button !== 0) return;
+
+                    event.preventDefault();
+                    startDrag(event.clientX);
+                    document.addEventListener('mousemove', handleMouseMove);
+                    document.addEventListener('mouseup', handleMouseUp);
+                });
+
+                const handleTouchMove = event => {
+                    event.preventDefault();
+                    moveDrag(event.touches[0].clientX);
+                };
+
+                const handleTouchEnd = () => {
+                    carousel.removeEventListener('touchmove', handleTouchMove);
+                    carousel.removeEventListener('touchend', handleTouchEnd);
+                    carousel.removeEventListener('touchcancel', handleTouchEnd);
+                    endDrag();
+                };
+
+                carousel.addEventListener('touchstart', event => {
+                    if (event.touches.length !== 1) return;
+
+                    startDrag(event.touches[0].clientX);
+                    carousel.addEventListener('touchmove', handleTouchMove, { passive: false });
+                    carousel.addEventListener('touchend', handleTouchEnd);
+                    carousel.addEventListener('touchcancel', handleTouchEnd);
+                }, { passive: true });
+            }
         }
 
     </script>
