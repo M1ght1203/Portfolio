@@ -126,21 +126,17 @@ body {
     overflow-x: auto;
     padding-bottom: 1rem;
     scroll-snap-type: x mandatory;
-    scrollbar-width: thin;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: pan-y;
+    overscroll-behavior-x: contain;
 }
 
 .image-carousel::-webkit-scrollbar {
-    height: 8px;
-}
-
-.image-carousel::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-}
-
-.image-carousel::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.35);
-    border-radius: 4px;
+    display: none;
 }
 
 .carousel-item {
@@ -164,6 +160,10 @@ body {
 
 .placeholder-text {
     pointer-events: none;
+}
+
+.image-carousel.is-dragging {
+    cursor: grabbing;
 }
 
 .section-title {

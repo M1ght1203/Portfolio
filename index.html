@@ -391,6 +391,53 @@
             });
         });
 
+        const carousel = document.querySelector('.image-carousel');
+        if (carousel) {
+            let isPointerDown = false;
+            let startX = 0;
+            let scrollStart = 0;
+
+            const onPointerDown = event => {
+                if (event.pointerType === 'mouse' && event.button !== 0) return;
+
+                isPointerDown = true;
+                carousel.classList.add('is-dragging');
+                startX = event.clientX;
+                scrollStart = carousel.scrollLeft;
+                if (carousel.setPointerCapture) {
+                    carousel.setPointerCapture(event.pointerId);
+                }
+            };
+
+            const onPointerMove = event => {
+                if (!isPointerDown) return;
+
+                event.preventDefault();
+                const deltaX = event.clientX - startX;
+                carousel.scrollLeft = scrollStart - deltaX;
+            };
+
+            const releasePointer = event => {
+                if (!isPointerDown) return;
+
+                isPointerDown = false;
+                carousel.classList.remove('is-dragging');
+                if (carousel.releasePointerCapture) {
+                    try {
+                        carousel.releasePointerCapture(event.pointerId);
+                    } catch (error) {
+                        // Ignore errors when capture isn't active.
+                    }
+                }
+            };
+
+            carousel.addEventListener('pointerdown', onPointerDown);
+            carousel.addEventListener('pointermove', onPointerMove, { passive: false });
+            carousel.addEventListener('pointerup', releasePointer);
+            carousel.addEventListener('pointerleave', releasePointer);
+            carousel.addEventListener('pointercancel', releasePointer);
+        }
+
     </script>
 
 </body>
