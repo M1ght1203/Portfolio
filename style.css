@@ -116,6 +116,54 @@ body {
     margin: 0;
 }
 
+.image-carousel-section {
+    padding: 4rem 0;
+}
+
+.image-carousel {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+}
+
+.image-carousel::-webkit-scrollbar {
+    height: 8px;
+}
+
+.image-carousel::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.image-carousel::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 4px;
+}
+
+.carousel-item {
+    min-width: clamp(220px, 30vw, 360px);
+    height: clamp(160px, 24vw, 280px);
+    background: #121212;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f0f0f0;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    scroll-snap-align: start;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.placeholder-text {
+    pointer-events: none;
+}
+
 .section-title {
     font-size: clamp(3rem, 8vw, 8rem);
     font-weight: 800;
