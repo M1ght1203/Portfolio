@@ -144,8 +144,10 @@ body {
 }
 
 .carousel-item {
-    min-width: clamp(220px, 30vw, 360px);
-    height: clamp(160px, 24vw, 280px);
+    flex: 0 0 75vw;
+    max-width: 75vw;
+    min-width: 280px;
+    aspect-ratio: 16 / 9;
     background: #121212;
     border-radius: 18px;
     display: flex;
