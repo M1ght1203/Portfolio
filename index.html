@@ -399,11 +399,14 @@
                 startScrollLeft: 0,
             };
 
-            const startDrag = clientX => {
+            let activePointerId = null;
+
+            const startDrag = (clientX, pointerId = null) => {
                 dragState.active = true;
                 dragState.startX = clientX;
                 dragState.startScrollLeft = carousel.scrollLeft;
                 carousel.classList.add('is-dragging');
+                activePointerId = pointerId;
             };
 
             const moveDrag = clientX => {
@@ -421,35 +424,55 @@
             };
 
             if (window.PointerEvent) {
-                const handlePointerUp = event => {
-                    if (!dragState.active) return;
+                const pointerMoveOptions = { passive: false };
+
+                const handlePointerMove = event => {
+                    if (!dragState.active || event.pointerId !== activePointerId) return;
+
+                    event.preventDefault();
+                    moveDrag(event.clientX);
+                };
+
+                const handlePointerEnd = event => {
+                    if (event.pointerId !== activePointerId) return;
+
+                    removePointerListeners();
+                    activePointerId = null;
 
                     try {
                         carousel.releasePointerCapture?.(event.pointerId);
                     } catch (error) {
                         // Ignore errors when pointer capture is not active.
                     }
+
                     endDrag();
                 };
 
+                const removePointerListeners = () => {
+                    window.removeEventListener('pointermove', handlePointerMove, pointerMoveOptions);
+                    window.removeEventListener('pointerup', handlePointerEnd);
+                    window.removeEventListener('pointercancel', handlePointerEnd);
+                };
+
+                const addPointerListeners = () => {
+                    window.addEventListener('pointermove', handlePointerMove, pointerMoveOptions);
+                    window.addEventListener('pointerup', handlePointerEnd);
+                    window.addEventListener('pointercancel', handlePointerEnd);
+                };
+
                 carousel.addEventListener('pointerdown', event => {
+                    if (dragState.active) return;
                     if (event.pointerType === 'mouse' && event.button !== 0) return;
 
                     event.preventDefault();
-                    startDrag(event.clientX);
-                    carousel.setPointerCapture?.(event.pointerId);
+                    startDrag(event.clientX, event.pointerId);
+                    try {
+                        carousel.setPointerCapture?.(event.pointerId);
+                    } catch (error) {
+                        // Ignore errors when pointer capture is not available.
+                    }
+                    addPointerListeners();
                 });
-
-                carousel.addEventListener('pointermove', event => {
-                    if (!dragState.active) return;
-
-                    event.preventDefault();
-                    moveDrag(event.clientX);
-                }, { passive: false });
-
-                window.addEventListener('pointerup', handlePointerUp);
-                window.addEventListener('pointercancel', handlePointerUp);
-                window.addEventListener('pointerleave', handlePointerUp);
             } else {
                 const handleMouseMove = event => {
                     moveDrag(event.clientX);
