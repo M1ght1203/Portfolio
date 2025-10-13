@@ -150,6 +150,43 @@
             </div>
         </section>
 
+        <section class="career-carousel section-container" aria-labelledby="career-carousel-title">
+            <h2 id="career-carousel-title" class="section-title">Career</h2>
+            <div class="career-carousel__container">
+                <button class="career-carousel__control career-carousel__control--prev" aria-label="View previous image">
+                    &#8592;
+                </button>
+                <div class="career-carousel__viewport">
+                    <div class="career-carousel__track">
+                        <div class="career-carousel__slide">
+                            <span>image.png</span>
+                        </div>
+                        <div class="career-carousel__slide">
+                            <span>image.png</span>
+                        </div>
+                        <div class="career-carousel__slide">
+                            <span>image.png</span>
+                        </div>
+                        <div class="career-carousel__slide">
+                            <span>image.png</span>
+                        </div>
+                        <div class="career-carousel__slide">
+                            <span>image.png</span>
+                        </div>
+                        <div class="career-carousel__slide">
+                            <span>image.png</span>
+                        </div>
+                        <div class="career-carousel__slide">
+                            <span>image.png</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="career-carousel__control career-carousel__control--next" aria-label="View next image">
+                    &#8594;
+                </button>
+            </div>
+        </section>
+
         <section id="projects" class="projects-section section-container">
             <h2 class="section-title">Projects</h2>
 
@@ -286,6 +323,35 @@
                 iframe.addEventListener('load', () => {
                     heroVideo.classList.add('video-loaded');
                 });
+            }
+
+            const carouselViewport = document.querySelector('.career-carousel__viewport');
+            const carouselTrack = document.querySelector('.career-carousel__track');
+            const prevButton = document.querySelector('.career-carousel__control--prev');
+            const nextButton = document.querySelector('.career-carousel__control--next');
+
+            if (carouselViewport && carouselTrack && prevButton && nextButton) {
+                const getGap = () => parseFloat(getComputedStyle(carouselTrack).gap || '0');
+                const getScrollAmount = () => carouselViewport.clientWidth + getGap();
+
+                const updateControls = () => {
+                    const maxScroll = Math.max(carouselViewport.scrollWidth - carouselViewport.clientWidth, 0);
+                    const tolerance = 2;
+                    prevButton.disabled = carouselViewport.scrollLeft <= tolerance;
+                    nextButton.disabled = carouselViewport.scrollLeft >= maxScroll - tolerance;
+                };
+
+                prevButton.addEventListener('click', () => {
+                    carouselViewport.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+                });
+
+                nextButton.addEventListener('click', () => {
+                    carouselViewport.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+                });
+
+                carouselViewport.addEventListener('scroll', updateControls, { passive: true });
+                window.addEventListener('resize', updateControls);
+                updateControls();
             }
         });
 

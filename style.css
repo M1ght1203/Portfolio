@@ -116,6 +116,84 @@ body {
     margin: 0;
 }
 
+.career-carousel {
+    padding: 4rem 0 6rem;
+}
+
+.career-carousel__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.career-carousel__viewport {
+    width: 75%;
+    max-width: 75vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: 1.5rem;
+    position: relative;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.85), #020617);
+}
+
+.career-carousel__viewport::-webkit-scrollbar {
+    display: none;
+}
+
+.career-carousel__track {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.career-carousel__slide {
+    flex: 0 0 100%;
+    aspect-ratio: 16 / 9;
+    background: #0f172a;
+    color: rgba(255, 255, 255, 0.8);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: clamp(1.5rem, 4vw, 3rem);
+    font-weight: 600;
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    scroll-snap-align: start;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.career-carousel__slide span {
+    pointer-events: none;
+}
+
+.career-carousel__control {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 0.75rem 1.1rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    color: var(--text-color);
+}
+
+.career-carousel__control:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.career-carousel__control:hover:not(:disabled),
+.career-carousel__control:focus-visible:not(:disabled) {
+    background-color: var(--button-bg);
+    border-color: var(--button-bg-hover);
+    outline: none;
+}
+
 .section-title {
     font-size: clamp(3rem, 8vw, 8rem);
     font-weight: 800;
@@ -476,6 +554,25 @@ body {
 
     .section-container {
         padding: 0 1.5rem;
+    }
+
+    .career-carousel__container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .career-carousel__viewport {
+        width: 100%;
+        max-width: none;
+    }
+
+    .career-carousel__track {
+        padding: 0.75rem;
+    }
+
+    .career-carousel__slide {
+        aspect-ratio: 3 / 2;
     }
 
     .hero-section {
