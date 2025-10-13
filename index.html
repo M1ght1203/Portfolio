@@ -397,16 +397,15 @@
                 active: false,
                 startX: 0,
                 startScrollLeft: 0,
+                pointerId: null,
             };
-
-            let activePointerId = null;
 
             const startDrag = (clientX, pointerId = null) => {
                 dragState.active = true;
                 dragState.startX = clientX;
                 dragState.startScrollLeft = carousel.scrollLeft;
+                dragState.pointerId = pointerId;
                 carousel.classList.add('is-dragging');
-                activePointerId = pointerId;
             };
 
             const moveDrag = clientX => {
@@ -420,6 +419,7 @@
                 if (!dragState.active) return;
 
                 dragState.active = false;
+                dragState.pointerId = null;
                 carousel.classList.remove('is-dragging');
             };
 
@@ -427,37 +427,23 @@
                 const pointerMoveOptions = { passive: false };
 
                 const handlePointerMove = event => {
-                    if (!dragState.active || event.pointerId !== activePointerId) return;
+                    if (!dragState.active || event.pointerId !== dragState.pointerId) return;
 
                     event.preventDefault();
+                    if (event.pointerType === 'mouse' && event.buttons === 0) {
+                        handlePointerEnd(event);
+                        return;
+                    }
                     moveDrag(event.clientX);
                 };
 
                 const handlePointerEnd = event => {
-                    if (event.pointerId !== activePointerId) return;
+                    if (event.pointerId !== dragState.pointerId) return;
 
-                    removePointerListeners();
-                    activePointerId = null;
-
-                    try {
-                        carousel.releasePointerCapture?.(event.pointerId);
-                    } catch (error) {
-                        // Ignore errors when pointer capture is not active.
-                    }
-
-                    endDrag();
-                };
-
-                const removePointerListeners = () => {
                     window.removeEventListener('pointermove', handlePointerMove, pointerMoveOptions);
                     window.removeEventListener('pointerup', handlePointerEnd);
                     window.removeEventListener('pointercancel', handlePointerEnd);
-                };
-
-                const addPointerListeners = () => {
-                    window.addEventListener('pointermove', handlePointerMove, pointerMoveOptions);
-                    window.addEventListener('pointerup', handlePointerEnd);
-                    window.addEventListener('pointercancel', handlePointerEnd);
+                    endDrag();
                 };
 
                 carousel.addEventListener('pointerdown', event => {
@@ -466,36 +452,40 @@
 
                     event.preventDefault();
                     startDrag(event.clientX, event.pointerId);
-                    try {
-                        carousel.setPointerCapture?.(event.pointerId);
-                    } catch (error) {
-                        // Ignore errors when pointer capture is not available.
-                    }
-                    addPointerListeners();
+                    window.addEventListener('pointermove', handlePointerMove, pointerMoveOptions);
+                    window.addEventListener('pointerup', handlePointerEnd);
+                    window.addEventListener('pointercancel', handlePointerEnd);
                 });
             } else {
                 const handleMouseMove = event => {
+                    event.preventDefault();
                     moveDrag(event.clientX);
                 };
 
                 const handleMouseUp = () => {
-                    document.removeEventListener('mousemove', handleMouseMove);
-                    document.removeEventListener('mouseup', handleMouseUp);
+                    window.removeEventListener('mousemove', handleMouseMove);
+                    window.removeEventListener('mouseup', handleMouseUp);
                     endDrag();
                 };
 
                 carousel.addEventListener('mousedown', event => {
+                    if (dragState.active) return;
                     if (event.button !== 0) return;
 
                     event.preventDefault();
                     startDrag(event.clientX);
-                    document.addEventListener('mousemove', handleMouseMove);
-                    document.addEventListener('mouseup', handleMouseUp);
+                    window.addEventListener('mousemove', handleMouseMove);
+                    window.addEventListener('mouseup', handleMouseUp);
                 });
 
                 const handleTouchMove = event => {
+                    if (!dragState.active) return;
+
+                    const touch = event.touches[0];
+                    if (!touch) return;
+
                     event.preventDefault();
-                    moveDrag(event.touches[0].clientX);
+                    moveDrag(touch.clientX);
                 };
 
                 const handleTouchEnd = () => {
@@ -506,6 +496,7 @@
                 };
 
                 carousel.addEventListener('touchstart', event => {
+                    if (dragState.active) return;
                     if (event.touches.length !== 1) return;
 
                     startDrag(event.touches[0].clientX);
