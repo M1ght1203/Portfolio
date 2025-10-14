@@ -123,8 +123,9 @@ body {
 .career-carousel__container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
+    justify-content: flex-start;
+    gap: 1.25rem;
+    width: 100%;
 }
 
 .career-carousel__viewport {
@@ -137,7 +138,7 @@ body {
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     scrollbar-width: none;
-    background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.85), #020617);
+    background: transparent;
 }
 
 .career-carousel__viewport::-webkit-scrollbar {
@@ -146,8 +147,8 @@ body {
 
 .career-carousel__track {
     display: flex;
-    gap: 1.5rem;
-    padding: 1rem;
+    gap: 1.25rem;
+    padding: 0;
 }
 
 .career-carousel__slide {
@@ -158,8 +159,8 @@ body {
     border-radius: 1rem;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding-left: clamp(1.5rem, 4vw, 3rem);
+    justify-content: center;
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
     font-weight: 600;
     font-size: clamp(1rem, 1.5vw, 1.5rem);
     scroll-snap-align: start;
@@ -169,6 +170,8 @@ body {
 
 .career-carousel__slide span {
     pointer-events: none;
+    width: 100%;
+    text-align: center;
 }
 
 .career-carousel__control {
