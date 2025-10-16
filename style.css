@@ -116,6 +116,56 @@ body {
     margin: 0;
 }
 
+.image-carousel-section {
+    padding: 4rem 0;
+}
+
+.image-carousel {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: pan-y;
+    overscroll-behavior-x: contain;
+}
+
+.image-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-item {
+    flex: 0 0 75vw;
+    max-width: 75vw;
+    min-width: 280px;
+    aspect-ratio: 16 / 9;
+    background: #121212;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f0f0f0;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    scroll-snap-align: start;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.placeholder-text {
+    pointer-events: none;
+}
+
+.image-carousel.is-dragging {
+    cursor: grabbing;
+}
+
 .section-title {
     font-size: clamp(3rem, 8vw, 8rem);
     font-weight: 800;
