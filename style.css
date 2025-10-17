@@ -181,7 +181,7 @@ body {
     width: 48px;
     height: 48px;
     border: none;
-    border-radius: 6px;
+    border-radius: 0;
     background-color: #b8b3ac;
     display: flex;
     align-items: center;
