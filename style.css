@@ -187,7 +187,7 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.2s ease;
 }
 
 .carousel-button::before {
@@ -211,12 +211,11 @@ body {
 .carousel-button:hover,
 .carousel-button:focus-visible {
     background-color: #a7a198;
-    transform: translateY(-1px);
     outline: none;
 }
 
 .carousel-button:active {
-    transform: translateY(0);
+    background-color: #9f998f;
 }
 
 .carousel-button:focus-visible {
