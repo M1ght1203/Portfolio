@@ -145,7 +145,7 @@
 
         <section id="gallery" class="section-container image-carousel-section">
             <h2 class="section-title">Career</h2>
-            <div class="image-carousel" role="list">
+            <div class="image-carousel" role="list" id="careerCarousel">
                 <div class="carousel-item" role="listitem">
                     <img src="images/L3Harris-1.jpg" alt="L3Harris Tactical Communication" />
                 </div>
@@ -155,6 +155,14 @@
                 <div class="carousel-item" role="listitem">
                     <img src="images/CU-Plastic.jpg" alt="C U Plastic" />
                 </div>
+            </div>
+            <div class="carousel-controls" role="group" aria-label="Career image carousel controls">
+                <button class="carousel-button prev" type="button" aria-controls="careerCarousel">
+                    <span class="visually-hidden">Previous image</span>
+                </button>
+                <button class="carousel-button next" type="button" aria-controls="careerCarousel">
+                    <span class="visually-hidden">Next image</span>
+                </button>
             </div>
         </section>
 
@@ -401,6 +409,43 @@
                     behavior: 'smooth',
                 });
             };
+
+            const prevButton = document.querySelector('.carousel-button.prev');
+            const nextButton = document.querySelector('.carousel-button.next');
+            const controlButtons = [prevButton, nextButton].filter(Boolean);
+
+            const handleControlInteractionStart = () => {
+                isUserInteracting = true;
+                clearTimeout(autoScrollTimeout);
+            };
+
+            const handleControlInteractionEnd = () => {
+                isUserInteracting = false;
+                scheduleAutoScroll();
+            };
+
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
+                    handleControlInteractionStart();
+                    goToIndex(currentIndex - 1);
+                    handleControlInteractionEnd();
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    handleControlInteractionStart();
+                    goToIndex(currentIndex + 1);
+                    handleControlInteractionEnd();
+                });
+            }
+
+            controlButtons.forEach(button => {
+                button.addEventListener('mouseenter', handleControlInteractionStart);
+                button.addEventListener('mouseleave', handleControlInteractionEnd);
+                button.addEventListener('focus', handleControlInteractionStart);
+                button.addEventListener('blur', handleControlInteractionEnd);
+            });
 
             const scheduleAutoScroll = () => {
                 clearTimeout(autoScrollTimeout);
