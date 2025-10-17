@@ -387,7 +387,62 @@
                 pointerId: null,
             };
 
+            const carouselItems = Array.from(carousel.querySelectorAll('.carousel-item'));
+            const motionPreferenceQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+            const prefersReducedMotion = motionPreferenceQuery || { matches: false };
+            let currentIndex = 0;
+            let isUserInteracting = false;
+            let autoScrollTimeout;
+            let userScrollTimeout;
+
+            const goToIndex = index => {
+                if (!carouselItems.length) return;
+
+                currentIndex = (index + carouselItems.length) % carouselItems.length;
+                const target = carouselItems[currentIndex];
+                if (!target) return;
+
+                carousel.scrollTo({
+                    left: target.offsetLeft,
+                    behavior: 'smooth',
+                });
+            };
+
+            const scheduleAutoScroll = () => {
+                clearTimeout(autoScrollTimeout);
+
+                if (prefersReducedMotion.matches || carouselItems.length <= 1) {
+                    return;
+                }
+
+                autoScrollTimeout = setTimeout(() => {
+                    if (!isUserInteracting) {
+                        goToIndex(currentIndex + 1);
+                    }
+                    scheduleAutoScroll();
+                }, 5000);
+            };
+
+            const handleMotionPreferenceChange = event => {
+                if (event.matches) {
+                    clearTimeout(autoScrollTimeout);
+                } else {
+                    scheduleAutoScroll();
+                }
+            };
+
+            if (motionPreferenceQuery) {
+                if (motionPreferenceQuery.addEventListener) {
+                    motionPreferenceQuery.addEventListener('change', handleMotionPreferenceChange);
+                } else if (motionPreferenceQuery.addListener) {
+                    motionPreferenceQuery.addListener(handleMotionPreferenceChange);
+                }
+            }
+
             const startDrag = (clientX, pointerId = null) => {
+                isUserInteracting = true;
+                clearTimeout(autoScrollTimeout);
+
                 dragState.active = true;
                 dragState.startX = clientX;
                 dragState.startScrollLeft = carousel.scrollLeft;
@@ -408,7 +463,57 @@
                 dragState.active = false;
                 dragState.pointerId = null;
                 carousel.classList.remove('is-dragging');
+
+                isUserInteracting = false;
+                scheduleAutoScroll();
             };
+
+            const handleUserScroll = () => {
+                isUserInteracting = true;
+                clearTimeout(userScrollTimeout);
+                userScrollTimeout = setTimeout(() => {
+                    isUserInteracting = false;
+                    scheduleAutoScroll();
+                }, 1000);
+            };
+
+            let scrollUpdateFrame = null;
+            const updateIndexFromScroll = () => {
+                scrollUpdateFrame = null;
+
+                if (!carouselItems.length) return;
+
+                const scrollLeft = carousel.scrollLeft;
+                let closestIndex = currentIndex;
+                let minDistance = Infinity;
+
+                carouselItems.forEach((item, index) => {
+                    const distance = Math.abs(item.offsetLeft - scrollLeft);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        closestIndex = index;
+                    }
+                });
+
+                currentIndex = closestIndex;
+            };
+
+            carousel.addEventListener('scroll', () => {
+                if (!scrollUpdateFrame) {
+                    scrollUpdateFrame = requestAnimationFrame(updateIndexFromScroll);
+                }
+                handleUserScroll();
+            });
+
+            carousel.addEventListener('mouseenter', () => {
+                isUserInteracting = true;
+                clearTimeout(autoScrollTimeout);
+            });
+
+            carousel.addEventListener('mouseleave', () => {
+                isUserInteracting = false;
+                scheduleAutoScroll();
+            });
 
             if (window.PointerEvent) {
                 const pointerMoveOptions = { passive: false };
@@ -492,6 +597,8 @@
                     carousel.addEventListener('touchcancel', handleTouchEnd);
                 }, { passive: true });
             }
+
+            scheduleAutoScroll();
         }
 
     </script>
