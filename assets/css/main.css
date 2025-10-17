@@ -33,6 +33,10 @@ body {
     scroll-behavior: smooth;
 }
 
+button {
+    font: inherit;
+}
+
 
 .scroll-wrapper {
     padding: 28px;
@@ -41,6 +45,20 @@ body {
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.noscript-message {
+    margin: 2rem auto;
+    padding: 1.5rem;
+    max-width: 32rem;
+    background-color: var(--mobile-menu-bg);
+    border: 1px solid var(--border-color);
+    color: var(--secondary-text);
+    text-align: center;
+}
+
+.noscript-message p {
+    margin: 0;
 }
 
 .section-container {
@@ -510,6 +528,13 @@ body {
 }
 
 /* Theme toggle removed */
+
+.hamburger-icon {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+}
 
 /* Hide mobile elements on larger screens */
 .hamburger-icon,
