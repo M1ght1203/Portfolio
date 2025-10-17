@@ -315,12 +315,6 @@
             navHideStart = Math.max(careerSection.offsetTop - nav.offsetHeight, navScrollThreshold);
         }
 
-        heroText.addEventListener('animationend', () => {
-            heroText.style.animation = 'none';
-            heroText.style.opacity = '1';
-            heroText.style.transform = 'none';
-        });
-
         function handleScroll() {
             const y = Math.max(window.scrollY, 0);
 
