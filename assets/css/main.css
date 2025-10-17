@@ -38,6 +38,11 @@ button {
 }
 
 
+.site-header {
+    position: relative;
+}
+
+
 .scroll-wrapper {
     padding: 28px;
     position: relative;
@@ -195,140 +200,154 @@ button {
     text-align: left;
 }
 
+.timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
 .career-entry {
     display: flex;
-    gap: 1rem;
-    margin: 0;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.6s ease-out forwards;
+    gap: 2.5rem;
     align-items: flex-start;
     border-top: 1px solid var(--border-color);
-    padding: 4rem 0;
+    padding-top: 3rem;
 }
 
-.career-left,
-.career-right {
-    flex: 1 1 50%;
+.career-entry:first-child {
+    border-top: none;
+    padding-top: 0;
 }
 
-.career-entry h3 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
-}
-
-.career-entry h3 .job-link {
-    color: var(--text-color);
-    text-decoration: none;
-}
-
-.career-entry h3 .job-link:hover {
-    color: var(--footer-span);
-}
-
-.career-entry .company {
-    display: block;
-    font-size: 0.9rem;
-    color: var(--secondary-text);
-    margin: 0;
-}
-
-.career-entry .date {
-    font-size: 0.9rem;
-    color: var(--secondary-text);
-    margin-bottom: 0.25rem;
-}
-
-.career-entry .description {
+.career-date {
+    min-width: 10rem;
     font-size: 0.95rem;
-    color: var(--footer-text);
-    line-height: 1.6;
-    margin-left: 0;
-    margin-bottom: 0.5rem;
-    margin-top: 1rem;
-}
-
-.career-entry .half-width {
-    width: 100%;
-}
-
-.career-entry ul.description {
-    list-style-type: disc;
-    list-style-position: inside;
-    padding-left: 0;
-    padding-right: 0;
-}
-
-.career-entry .tech {
-    font-size: 0.9rem;
+    font-weight: 600;
     color: var(--secondary-text);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.career-details h3 {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+}
+
+.career-details h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.career-details h3 a:hover,
+.career-details h3 a:focus-visible {
+    border-color: currentColor;
+}
+
+.career-details p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--footer-text);
+    margin: 0 0 1rem;
+}
+
+.tag-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
 }
 
-.career-entry .tech .tag {
+.tag-list li {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.3rem 0.85rem;
+    padding: 0.35rem 0.85rem;
     background-color: var(--tag-bg);
     border: 1px solid var(--tag-border);
-    border-radius: 9999px;
-    color: var(--text-color);
-    font-size: 0.8rem;
-    font-weight: 400;
-    white-space: nowrap;
-    line-height: 1;
+    border-radius: 999px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
 }
 
-/* Project Entries */
-.project-entry {
+.project-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
-    gap: 1rem;
-    margin: 0;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.6s ease-out forwards;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.project-list li {
+    display: flex;
+    gap: 2rem;
     border-top: 1px solid var(--border-color);
-    padding: 4rem 0;
+    padding-top: 2.5rem;
 }
 
-.project-left,
-.project-right {
-    flex: 1 1 50%;
+.project-list li:first-child {
+    border-top: none;
+    padding-top: 0;
 }
 
-.project-entry h3 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
-}
-
-.project-entry h3 .project-link {
-    color: var(--text-color);
-    text-decoration: none;
-}
-
-.project-entry h3 .project-link:hover {
-    color: var(--footer-span);
-}
-
-.project-entry .date {
+.project-meta {
+    min-width: 6rem;
     font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
     color: var(--secondary-text);
-    margin-bottom: 0.25rem;
+    letter-spacing: 0.08em;
 }
 
-.project-entry .description {
-    font-size: 0.95rem;
-    color: var(--footer-text);
+.project-body h3 {
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+}
+
+.project-body h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.project-body h3 a:hover,
+.project-body h3 a:focus-visible {
+    border-color: currentColor;
+}
+
+.project-body p {
+    margin: 0;
+    font-size: 1rem;
     line-height: 1.6;
-    margin-left: 0;
-    margin-bottom: 0.5rem;
-    margin-top: 1rem;
+    color: var(--footer-text);
+}
+
+.coming-soon {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--secondary-text);
+}
+
+.site-footer {
+    padding: 3rem 2.5rem;
+    text-align: center;
+    color: var(--footer-text);
+    font-size: 0.9rem;
+}
+
+.site-footer span {
+    color: var(--footer-span);
 }
 
 
@@ -530,17 +549,49 @@ button {
 /* Theme toggle removed */
 
 .hamburger-icon {
+    display: none;
+    border: 0;
     background: none;
-    border: none;
-    padding: 0;
+    padding: 0.25rem;
     color: inherit;
+    width: 2.75rem;
+    height: 2.75rem;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Hide mobile elements on larger screens */
-.hamburger-icon,
+.hamburger-icon span {
+    display: block;
+    width: 1.75rem;
+    height: 2px;
+    background-color: currentColor;
+    border-radius: 999px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.hamburger-icon span + span {
+    margin-top: 0.4rem;
+}
+
+.hamburger-icon.open span:nth-child(1) {
+    transform: translateY(0.42rem) rotate(45deg);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-icon.open span:nth-child(3) {
+    transform: translateY(-0.42rem) rotate(-45deg);
+}
+
 .mobile-menu,
 .mobile-backdrop {
     display: none;
+}
+
+.mobile-backdrop[hidden] {
+    display: none !important;
 }
 
 /* Mobile */
@@ -580,10 +631,8 @@ button {
         color: #000000;
     }
 
-    .hamburger-icon svg {
-        width: 30px;
-        height: 30px;
-        transition: opacity 0.2s ease;
+    .hamburger-icon span {
+        width: 1.75rem;
     }
 
     .mobile-menu {
@@ -661,40 +710,26 @@ button {
 
     .career-entry {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 1rem;
     }
 
-    .career-entry h3 {
-        font-size: 2rem;
+    .career-date {
+        min-width: auto;
+        font-size: 0.85rem;
     }
 
-    .career-entry .company {
-        font-size: 0.8rem;
+    .career-details h3 {
+        font-size: 1.75rem;
     }
 
-    .career-entry .date {
-        font-size: 0.8rem;
-        color: var(--secondary-text);
-        margin-bottom: 0.25rem;
-    }
-
-    .career-entry .half-width {
-        width: 100%;
-    }
-
-    .project-entry {
+    .project-list li {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.75rem;
     }
 
-    .project-entry h3 {
-        font-size: 2rem;
-    }
-
-    .project-entry .date {
-        font-size: 0.8rem;
-        color: var(--secondary-text);
-        margin-bottom: 0.25rem;
+    .project-meta {
+        min-width: auto;
+        font-size: 0.85rem;
     }
 }
 

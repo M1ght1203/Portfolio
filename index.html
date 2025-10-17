@@ -1,49 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Title & Description -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Jason Zheng Portfolio</title>
-    <meta name="description"
-        content="Jason Zheng – Software Engineer focused on Full-Stack & Automation. View my projects and connect." />
-
-    <!-- Open Graph for social media preview -->
+    <meta name="description" content="Jason Zheng – Software Engineer focused on Full-Stack & Automation." />
     <meta property="og:title" content="Jason Zheng Portfolio" />
     <meta property="og:description" content="Software Engineer focused on Full-Stack & Automation." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://jasonzheng.me" />
-
-    <!-- Fonts & CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/main.css" />
-
-    <!-- Analytics -->
-    <script defer src="https://cloud.umami.is/script.js"
-        data-website-id="778f1b86-bd55-4a72-ae92-56d50467d7d5"></script>
 </head>
-
 <body>
-    <nav id="primaryNav" class="top-nav" aria-label="Primary"></nav>
-    <button id="mobileMenuToggle" class="hamburger-icon" type="button" aria-controls="mobileMenu"
-        aria-expanded="false" aria-label="Toggle navigation"></button>
-    <div id="mobileMenuBackdrop" class="mobile-backdrop"></div>
-    <nav id="mobileMenu" class="mobile-menu" aria-label="Mobile Navigation"></nav>
+    <header class="site-header">
+        <nav class="top-nav" aria-label="Primary">
+            <div class="nav-left">
+                <a href="#career">Career</a>
+                <a href="#projects">Projects</a>
+                <a href="#organizations">Organizations</a>
+                <a href="https://www.linkedin.com/in/jzheng39/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://github.com/M1ght1203" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+            <div class="nav-right">
+                <a href="resume/resume.pdf" target="_blank" rel="noopener">Resume</a>
+            </div>
+        </nav>
+        <button class="hamburger-icon" id="mobileMenuToggle" type="button" aria-controls="mobileMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="mobile-backdrop" id="mobileMenuBackdrop" hidden></div>
+        <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile Navigation">
+            <a href="#career">Career</a>
+            <a href="#projects">Projects</a>
+            <a href="#organizations">Organizations</a>
+            <a href="https://www.linkedin.com/in/jzheng39/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/M1ght1203" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="resume/resume.pdf" class="mobile-resume" target="_blank" rel="noopener">Resume</a>
+        </nav>
+    </header>
 
-    <div class="scroll-wrapper" id="contentRoot"></div>
+    <main class="scroll-wrapper">
+        <section class="hero-section" id="hero">
+            <div class="hero-video" aria-hidden="true">
+                <img class="hero-fallback" src="assets/images/hero-fallback.jpg" alt="Abstract dark gradient background" />
+                <iframe src="https://www.youtube.com/embed/qol_gS1txGs?autoplay=1&mute=1&controls=0&loop=1&playlist=qol_gS1txGs&modestbranding=1&playsinline=1&rel=0"
+                    title="Landing page background video" frameborder="0"
+                    allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="main-text">
+                <h1 class="hero-title">Jason Zheng</h1>
+                <p class="hero-subtitle">Software Engineer</p>
+            </div>
+        </section>
 
-    <noscript>
-        <div class="noscript-message">
-            <p>This portfolio relies on modern JavaScript features. Please enable JavaScript to view the full
-                experience.</p>
-        </div>
-    </noscript>
+        <section class="section-container timeline-section" id="career">
+            <h2 class="section-title">Career</h2>
+            <ol class="timeline">
+                <li class="career-entry">
+                    <div class="career-date">May 2025 – Jul 2025</div>
+                    <div class="career-details">
+                        <h3>Software Engineer Intern · <a href="https://l3harris.com" target="_blank" rel="noopener noreferrer">L3Harris</a></h3>
+                        <p>
+                            Designed and developed an internal Configure, Price, Quote (CPQ) tool to streamline quoting and improve pricing accuracy.
+                            Enabled tiered product pricing, historical price tracking, and flexible discounting with a SQL data store and role-based security.
+                        </p>
+                        <ul class="tag-list">
+                            <li>C#</li>
+                            <li>.NET</li>
+                            <li>WPF</li>
+                            <li>Agile</li>
+                            <li>ExpressSQL</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="career-entry">
+                    <div class="career-date">Jun 2024 – Aug 2024</div>
+                    <div class="career-details">
+                        <h3>Software Engineer Intern · <a href="https://l3harris.com" target="_blank" rel="noopener noreferrer">L3Harris</a></h3>
+                        <p>
+                            Built a C# WPF pricing automation tool that reduced quoting time by 98% and aligned complex pricing logic with business requirements.
+                            Delivered 43+ Agile tickets over nine weeks as part of a six-person Scrum team.
+                        </p>
+                        <ul class="tag-list">
+                            <li>C#</li>
+                            <li>.NET</li>
+                            <li>WPF</li>
+                            <li>Agile</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="career-entry">
+                    <div class="career-date">May 2021 – May 2024</div>
+                    <div class="career-details">
+                        <h3>Assistant Manager · <a href="https://cuplastic.com" target="_blank" rel="noopener noreferrer">C U Plastic</a></h3>
+                        <p>
+                            Led data-driven operational improvements that increased organizational efficiency by 20% and reduced truck-loading times by 25% through a new staging strategy.
+                        </p>
+                        <ul class="tag-list">
+                            <li>Data Analysis</li>
+                            <li>Workflow Optimization</li>
+                            <li>Logistics</li>
+                            <li>Operations Management</li>
+                        </ul>
+                    </div>
+                </li>
+            </ol>
+        </section>
 
-    <script type="module" src="assets/js/main.js"></script>
+        <section class="section-container image-carousel-section" id="gallery">
+            <h2 class="section-title">In the Field</h2>
+            <div class="image-carousel" data-auto-scroll>
+                <figure class="carousel-item">
+                    <img src="assets/images/L3Harris-1.jpg" alt="L3Harris Tactical Communication" />
+                </figure>
+                <figure class="carousel-item">
+                    <img src="assets/images/L3Harris-2.jpg" alt="L3Harris Tactical Communication" />
+                </figure>
+                <figure class="carousel-item">
+                    <img src="assets/images/CU-Plastic.jpg" alt="C U Plastic" />
+                </figure>
+            </div>
+        </section>
+
+        <section class="section-container projects-section" id="projects">
+            <h2 class="section-title">Projects</h2>
+            <ul class="project-list">
+                <li>
+                    <div class="project-meta">2025</div>
+                    <div class="project-body">
+                        <h3>Job Board API</h3>
+                        <p>Scrapes 10,000 sites daily and tracks 450k listings using Python, Cloudflare D1, and RapidAPI.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="project-meta">2025</div>
+                    <div class="project-body">
+                        <h3><a href="https://github.com/M1ght1203/elarahealth" target="_blank" rel="noopener noreferrer">ElaraHealth</a></h3>
+                        <p>AI therapy companion powered by Gemini 2.5, built with Next.js, Tailwind CSS, Supabase, and Vercel.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="project-meta">2025</div>
+                    <div class="project-body">
+                        <h3>Mission Uncrossable</h3>
+                        <p>Crossy Road-inspired game with gambling mechanics. Built in Flutter with a SQLite data layer.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="project-meta">2024</div>
+                    <div class="project-body">
+                        <h3>ParkEase</h3>
+                        <p>Parking lot management system with scheduling and occupancy insights using Python and SQLite.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="project-meta">2023</div>
+                    <div class="project-body">
+                        <h3>ShelfSync</h3>
+                        <p>Warehouse management platform for custom workflows with Flutter, Dart, PostgreSQL, and Firebase.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="project-meta">2021</div>
+                    <div class="project-body">
+                        <h3>Suzune</h3>
+                        <p>Marketplace for buying, selling, and trading digital trading cards backed by a Python REST API.</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="section-container organizations-section" id="organizations">
+            <h2 class="section-title">Organizations</h2>
+            <p class="coming-soon">More updates coming soon.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="year"></span> Jason Zheng. All rights reserved.</p>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
 </body>
-
 </html>
