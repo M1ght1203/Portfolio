@@ -305,6 +305,9 @@
             }
         });
 
+        const motionPreferenceQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+        const isReducedMotionPreferred = () => Boolean(motionPreferenceQuery && motionPreferenceQuery.matches);
+
         const nav = document.querySelector('.top-nav');
         const heroSection = document.getElementById('hero');
         const heroText = heroSection.querySelector('.main-text');
@@ -372,7 +375,8 @@
                 const targetElement = document.getElementById(targetId);
                 if (targetElement) {
                     e.preventDefault();
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    const shouldReduceMotion = isReducedMotionPreferred();
+                    targetElement.scrollIntoView({ behavior: shouldReduceMotion ? 'auto' : 'smooth' });
                     if (link.closest('.mobile-menu')) {
                         toggleMenu();
                     }
@@ -390,8 +394,6 @@
             };
 
             const carouselItems = Array.from(carousel.querySelectorAll('.carousel-item'));
-            const motionPreferenceQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
-            const prefersReducedMotion = motionPreferenceQuery || { matches: false };
             let currentIndex = 0;
             let isUserInteracting = false;
             let autoScrollTimeout;
@@ -406,7 +408,7 @@
 
                 carousel.scrollTo({
                     left: target.offsetLeft,
-                    behavior: 'smooth',
+                    behavior: isReducedMotionPreferred() ? 'auto' : 'smooth',
                 });
             };
 
@@ -450,7 +452,7 @@
             const scheduleAutoScroll = () => {
                 clearTimeout(autoScrollTimeout);
 
-                if (prefersReducedMotion.matches || carouselItems.length <= 1) {
+                if (isReducedMotionPreferred() || carouselItems.length <= 1) {
                     return;
                 }
 
