@@ -21,6 +21,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" />
 
     <!-- Analytics -->
     <script defer src="https://cloud.umami.is/script.js"
@@ -41,7 +43,7 @@
         </div>
     </nav>
 
-    <div class="scroll-wrapper">
+    <div class="scroll-wrapper" data-scroll-container>
         <!-- Hero -->
         <section id="hero" class="content hero-section">
             <div class="hero-video" aria-hidden="true">
@@ -273,6 +275,7 @@
         <a class="mobile-resume" href="resume/resume.pdf" target="_blank" download>Resume</a>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
     <script>
         function toggleMenu() {
             const menu = document.getElementById("mobileMenu");
@@ -307,63 +310,83 @@
 
         const nav = document.querySelector('.top-nav');
         const heroSection = document.getElementById('hero');
-        const heroText = heroSection.querySelector('.main-text');
+        const heroText = heroSection ? heroSection.querySelector('.main-text') : null;
         const careerSection = document.getElementById('career');
-        const fadeEnd = careerSection.offsetTop;
+        let fadeEnd = careerSection ? careerSection.offsetTop : 0;
         const scrollDelta = 5;
         const navHideDelay = 200;
         let lastScrollY = window.scrollY;
         let navHideTimeout;
         let navScrollThreshold = 0;
         let navHideStart = 0;
+        let locoScroll = null;
 
         function updateNavMetrics() {
+            if (!nav) return;
+
             const doubledNavHeight = nav.offsetHeight * 2;
             navScrollThreshold = Math.max(doubledNavHeight, 120);
-            navHideStart = Math.max(careerSection.offsetTop - nav.offsetHeight, navScrollThreshold);
+            const careerOffset = careerSection ? careerSection.offsetTop : 0;
+            navHideStart = Math.max(careerOffset - nav.offsetHeight, navScrollThreshold);
+            fadeEnd = careerOffset;
         }
 
-        function handleScroll() {
-            const y = Math.max(window.scrollY, 0);
+        function handleScroll(positionY) {
+            const currentScrollY = typeof positionY === 'number' ? positionY : window.scrollY;
+            const y = Math.max(currentScrollY, 0);
 
-            if (y > navScrollThreshold) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-                nav.classList.remove('hidden');
-            }
+            if (nav) {
+                if (y > navScrollThreshold) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                    nav.classList.remove('hidden');
+                }
 
-            if (y <= navHideStart) {
-                clearTimeout(navHideTimeout);
-                nav.classList.remove('hidden');
-            } else if (y > lastScrollY + scrollDelta) {
-                clearTimeout(navHideTimeout);
-                navHideTimeout = setTimeout(() => {
-                    if (window.scrollY > navHideStart) {
-                        nav.classList.add('hidden');
-                    }
-                }, navHideDelay);
-            } else if (y < lastScrollY - scrollDelta) {
-                clearTimeout(navHideTimeout);
-                nav.classList.remove('hidden');
+                if (y <= navHideStart) {
+                    clearTimeout(navHideTimeout);
+                    nav.classList.remove('hidden');
+                } else if (y > lastScrollY + scrollDelta) {
+                    clearTimeout(navHideTimeout);
+                    navHideTimeout = setTimeout(() => {
+                        if (lastScrollY > navHideStart) {
+                            nav.classList.add('hidden');
+                        }
+                    }, navHideDelay);
+                } else if (y < lastScrollY - scrollDelta) {
+                    clearTimeout(navHideTimeout);
+                    nav.classList.remove('hidden');
+                }
             }
 
             lastScrollY = y;
 
-            const progress = Math.min(y / fadeEnd, 1);
-            const fade = Math.min(progress * 1.5, 1);
-            const scale = 1 - fade * 0.15;
-            heroText.style.opacity = 1 - fade;
-            heroText.style.transform = `scale(${scale})`;
+            if (heroText && fadeEnd > 0) {
+                const progress = Math.min(y / fadeEnd, 1);
+                const fade = Math.min(progress * 1.5, 1);
+                const scale = 1 - fade * 0.15;
+                heroText.style.opacity = 1 - fade;
+                heroText.style.transform = `scale(${scale})`;
+            }
         }
 
         updateNavMetrics();
         window.addEventListener('resize', () => {
             updateNavMetrics();
-            handleScroll();
+            if (locoScroll) {
+                locoScroll.update();
+                const currentY = (locoScroll?.scroll?.instance?.scroll?.y) ?? 0;
+                handleScroll(currentY);
+            } else {
+                handleScroll(window.scrollY);
+            }
         });
-        window.addEventListener('scroll', handleScroll);
-        handleScroll();
+        window.addEventListener('scroll', () => {
+            if (!locoScroll) {
+                handleScroll(window.scrollY);
+            }
+        });
+        handleScroll(window.scrollY);
 
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', e => {
@@ -372,13 +395,43 @@
                 const targetElement = document.getElementById(targetId);
                 if (targetElement) {
                     e.preventDefault();
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    if (locoScroll) {
+                        locoScroll.scrollTo(targetElement);
+                    } else {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
                     if (link.closest('.mobile-menu')) {
                         toggleMenu();
                     }
                 }
             });
         });
+
+        const scrollContainer = document.querySelector('.scroll-wrapper');
+        if (scrollContainer && window.LocomotiveScroll) {
+            locoScroll = new LocomotiveScroll({
+                el: scrollContainer,
+                smooth: true,
+                multiplier: 1,
+                smartphone: {
+                    smooth: true,
+                },
+                tablet: {
+                    smooth: true,
+                },
+            });
+
+            locoScroll.on('scroll', event => {
+                const scrollPosition = event && event.scroll ? event.scroll.y : 0;
+                handleScroll(scrollPosition);
+            });
+
+            requestAnimationFrame(() => {
+                updateNavMetrics();
+                const initialY = (locoScroll?.scroll?.instance?.scroll?.y) ?? 0;
+                handleScroll(initialY);
+            });
+        }
 
         const carousel = document.querySelector('.image-carousel');
         if (carousel) {
