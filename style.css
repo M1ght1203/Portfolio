@@ -178,11 +178,12 @@ body {
 }
 
 .carousel-button {
-    width: 48px;
-    height: 48px;
+    --carousel-control-size: calc(1.2rem + clamp(0.8rem, 1vw, 1rem));
+    width: var(--carousel-control-size);
+    height: var(--carousel-control-size);
     border: none;
     border-radius: 0;
-    background-color: #b8b3ac;
+    background-color: #000000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -210,12 +211,12 @@ body {
 
 .carousel-button:hover,
 .carousel-button:focus-visible {
-    background-color: #a7a198;
+    background-color: #111111;
     outline: none;
 }
 
 .carousel-button:active {
-    background-color: #9f998f;
+    background-color: #181818;
 }
 
 .carousel-button:focus-visible {
