@@ -130,6 +130,8 @@ body {
     overflow-x: auto;
     padding-bottom: 1rem;
     scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--carousel-edge-gap);
+    scroll-padding-right: var(--carousel-edge-gap);
     scrollbar-width: none;
     -ms-overflow-style: none;
     cursor: grab;
@@ -142,6 +144,7 @@ body {
 .image-carousel::before,
 .image-carousel::after {
     content: "";
+    display: block;
     flex: 0 0 var(--carousel-edge-gap);
 }
 
