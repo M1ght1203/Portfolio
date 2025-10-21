@@ -45,7 +45,7 @@ body {
 
 .section-container {
     width: 100%;
-    padding: 0 2.5rem;
+    padding: 0 28px;
     margin: 0 auto;
 }
 
@@ -59,7 +59,7 @@ body {
     position: relative;
     overflow: hidden;
     padding: 28px;
-    margin: -28px -28px 0;
+    margin: 0;
 }
 
 .hero-section::after {
