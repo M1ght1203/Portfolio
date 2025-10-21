@@ -119,6 +119,8 @@ body {
 .image-carousel-section {
     padding-top: 4rem;
     padding-bottom: 4rem;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .image-carousel {
@@ -134,6 +136,16 @@ body {
     -webkit-user-select: none;
     touch-action: pan-y;
     overscroll-behavior-x: contain;
+    margin-left: -2.5rem;
+    margin-right: -2.5rem;
+}
+
+.image-carousel .carousel-item:first-child {
+    margin-left: 2.5rem;
+}
+
+.image-carousel .carousel-item:last-child {
+    margin-right: 2.5rem;
 }
 
 .image-carousel::-webkit-scrollbar {
@@ -531,6 +543,19 @@ body {
         padding-bottom: 4rem;
         padding-left: 0;
         padding-right: 0;
+    }
+
+    .image-carousel {
+        margin-left: -1.5rem;
+        margin-right: -1.5rem;
+    }
+
+    .image-carousel .carousel-item:first-child {
+        margin-left: 1.5rem;
+    }
+
+    .image-carousel .carousel-item:last-child {
+        margin-right: 1.5rem;
     }
 
     .hero-section {
