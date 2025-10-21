@@ -525,6 +525,10 @@ body {
         padding: 0 1.5rem;
     }
 
+    .image-carousel-section {
+        padding: 4rem 1.5rem;
+    }
+
     .hero-section {
         min-height: calc(100vh - 4rem);
         display: flex;
