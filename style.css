@@ -117,7 +117,8 @@ body {
 }
 
 .image-carousel-section {
-    padding: 4rem 0;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
 }
 
 .image-carousel {
@@ -523,6 +524,13 @@ body {
 
     .section-container {
         padding: 0 1.5rem;
+    }
+
+    .image-carousel-section {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .hero-section {
