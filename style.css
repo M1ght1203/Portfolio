@@ -123,7 +123,6 @@ body {
 
 .image-carousel {
     display: flex;
-    gap: 1.5rem;
     overflow-x: auto;
     padding-bottom: 1rem;
     scroll-snap-type: x mandatory;
@@ -157,6 +156,12 @@ body {
     letter-spacing: 0.1em;
     scroll-snap-align: start;
     border: none;
+    margin-right: 1.5rem;
+}
+
+.carousel-item:last-child {
+    margin-right: 0;
+    margin-left: 0;
 }
 
 .carousel-item img {
