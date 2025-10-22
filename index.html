@@ -597,25 +597,26 @@
             });
 
             if (window.PointerEvent) {
-                const pointerMoveOptions = { passive: false };
+                const releasePointerCapture = pointerId => {
+                    if (typeof carousel.releasePointerCapture !== 'function') return;
 
-                const handlePointerMove = event => {
-                    if (!dragState.active || event.pointerId !== dragState.pointerId) return;
-
-                    event.preventDefault();
-                    if (event.pointerType === 'mouse' && event.buttons === 0) {
-                        handlePointerEnd(event);
-                        return;
+                    try {
+                        if (typeof carousel.hasPointerCapture === 'function') {
+                            if (carousel.hasPointerCapture(pointerId)) {
+                                carousel.releasePointerCapture(pointerId);
+                            }
+                        } else {
+                            carousel.releasePointerCapture(pointerId);
+                        }
+                    } catch (error) {
+                        // Ignore release errors which can occur if the pointer is already released
                     }
-                    moveDrag(event.clientX);
                 };
 
                 const handlePointerEnd = event => {
                     if (event.pointerId !== dragState.pointerId) return;
 
-                    window.removeEventListener('pointermove', handlePointerMove, pointerMoveOptions);
-                    window.removeEventListener('pointerup', handlePointerEnd);
-                    window.removeEventListener('pointercancel', handlePointerEnd);
+                    releasePointerCapture(event.pointerId);
                     endDrag();
                 };
 
@@ -625,9 +626,35 @@
 
                     event.preventDefault();
                     startDrag(event.clientX, event.pointerId);
-                    window.addEventListener('pointermove', handlePointerMove, pointerMoveOptions);
-                    window.addEventListener('pointerup', handlePointerEnd);
-                    window.addEventListener('pointercancel', handlePointerEnd);
+
+                    if (typeof carousel.setPointerCapture === 'function') {
+                        try {
+                            carousel.setPointerCapture(event.pointerId);
+                        } catch (error) {
+                            // If the browser rejects pointer capture we continue without it
+                        }
+                    }
+                });
+
+                carousel.addEventListener('pointermove', event => {
+                    if (!dragState.active || event.pointerId !== dragState.pointerId) return;
+
+                    event.preventDefault();
+
+                    if (event.pointerType === 'mouse' && event.buttons === 0) {
+                        handlePointerEnd(event);
+                        return;
+                    }
+
+                    moveDrag(event.clientX);
+                });
+
+                carousel.addEventListener('pointerup', handlePointerEnd);
+                carousel.addEventListener('pointercancel', handlePointerEnd);
+                carousel.addEventListener('lostpointercapture', event => {
+                    if (event.pointerId === dragState.pointerId) {
+                        endDrag();
+                    }
                 });
             } else {
                 const handleMouseMove = event => {
