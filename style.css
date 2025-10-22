@@ -168,6 +168,8 @@ body {
 
 .image-carousel.is-dragging {
     cursor: grabbing;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
 }
 
 .carousel-controls {
