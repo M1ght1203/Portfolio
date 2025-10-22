@@ -26,11 +26,17 @@ html,
 body {
     width: 100%;
     overflow-x: hidden;
+    overflow-y: auto;
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     min-height: 100vh;
     scroll-behavior: smooth;
+}
+
+html.has-scroll-smooth,
+html.has-scroll-smooth body {
+    overflow-y: scroll !important;
 }
 
 
