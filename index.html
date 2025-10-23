@@ -429,6 +429,9 @@
                 startX: 0,
                 startScrollLeft: 0,
                 pointerId: null,
+                lastMoveX: 0,
+                lastMoveTime: 0,
+                velocity: 0,
             };
 
             const carouselItems = Array.from(carousel.querySelectorAll('.carousel-item'));
@@ -438,6 +441,43 @@
             let isUserInteracting = false;
             let autoScrollTimeout;
             let userScrollTimeout;
+            let isSnapAnimating = false;
+            let snapScrollListener = null;
+
+            const clearSnapScrollListener = () => {
+                if (!snapScrollListener) return;
+
+                carousel.removeEventListener('scroll', snapScrollListener);
+                snapScrollListener = null;
+            };
+
+            const stopSnapAnimation = (cancelled = false) => {
+                clearSnapScrollListener();
+                isSnapAnimating = false;
+
+                if (!cancelled) {
+                    carousel.classList.remove('is-free-scroll');
+                    isUserInteracting = false;
+                    scheduleAutoScroll();
+                }
+            };
+
+            const getClosestIndex = scrollLeft => {
+                if (!carouselItems.length) return 0;
+
+                let closestIndex = 0;
+                let minDistance = Infinity;
+
+                carouselItems.forEach((item, index) => {
+                    const distance = Math.abs(item.offsetLeft - scrollLeft);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        closestIndex = index;
+                    }
+                });
+
+                return closestIndex;
+            };
 
             const goToIndex = index => {
                 if (!carouselItems.length) return;
@@ -457,6 +497,8 @@
             const controlButtons = [prevButton, nextButton].filter(Boolean);
 
             const handleControlInteractionStart = () => {
+                stopSnapAnimation(true);
+                carousel.classList.remove('is-free-scroll');
                 isUserInteracting = true;
                 clearTimeout(autoScrollTimeout);
             };
@@ -521,6 +563,8 @@
             }
 
             const startDrag = (clientX, pointerId = null) => {
+                stopSnapAnimation(true);
+
                 isUserInteracting = true;
                 clearTimeout(autoScrollTimeout);
 
@@ -528,7 +572,11 @@
                 dragState.startX = clientX;
                 dragState.startScrollLeft = carousel.scrollLeft;
                 dragState.pointerId = pointerId;
+                dragState.lastMoveX = clientX;
+                dragState.lastMoveTime = performance.now();
+                dragState.velocity = 0;
                 carousel.classList.add('is-dragging');
+                carousel.classList.add('is-free-scroll');
             };
 
             const moveDrag = clientX => {
@@ -536,6 +584,17 @@
 
                 const deltaX = clientX - dragState.startX;
                 carousel.scrollLeft = dragState.startScrollLeft - deltaX;
+
+                const now = performance.now();
+                const deltaMoveX = clientX - dragState.lastMoveX;
+                const deltaTime = now - dragState.lastMoveTime;
+
+                if (deltaTime > 0) {
+                    dragState.velocity = deltaMoveX / deltaTime;
+                }
+
+                dragState.lastMoveX = clientX;
+                dragState.lastMoveTime = now;
             };
 
             const endDrag = () => {
@@ -545,14 +604,91 @@
                 dragState.pointerId = null;
                 carousel.classList.remove('is-dragging');
 
-                isUserInteracting = false;
-                scheduleAutoScroll();
+                const timeSinceLastMove = performance.now() - dragState.lastMoveTime;
+                const effectiveVelocity = timeSinceLastMove <= 120 ? dragState.velocity : 0;
+
+                let preferredIndex = null;
+                if (effectiveVelocity <= -0.4) {
+                    preferredIndex = currentIndex + 1;
+                } else if (effectiveVelocity >= 0.4) {
+                    preferredIndex = currentIndex - 1;
+                }
+
+                snapToClosestItem(preferredIndex);
+            };
+
+            const snapToClosestItem = preferredIndex => {
+                if (!carouselItems.length) {
+                    stopSnapAnimation(false);
+                    return;
+                }
+
+                let targetIndex;
+                if (typeof preferredIndex === 'number' && Number.isFinite(preferredIndex)) {
+                    const total = carouselItems.length;
+                    targetIndex = ((preferredIndex % total) + total) % total;
+                } else {
+                    targetIndex = getClosestIndex(carousel.scrollLeft);
+                }
+
+                const targetItem = carouselItems[targetIndex];
+                if (!targetItem) {
+                    stopSnapAnimation(false);
+                    return;
+                }
+
+                const targetLeft = targetItem.offsetLeft;
+                const distance = Math.abs(targetLeft - carousel.scrollLeft);
+
+                currentIndex = targetIndex;
+
+                if (distance < 1) {
+                    stopSnapAnimation(false);
+                    return;
+                }
+
+                if (prefersReducedMotion.matches) {
+                    carousel.scrollTo({ left: targetLeft, behavior: 'auto' });
+                    stopSnapAnimation(false);
+                    return;
+                }
+
+                isSnapAnimating = true;
+                isUserInteracting = true;
+
+                clearSnapScrollListener();
+
+                const startTime = performance.now();
+                const maxDuration = 600;
+
+                snapScrollListener = () => {
+                    const remaining = Math.abs(carousel.scrollLeft - targetLeft);
+                    const elapsed = performance.now() - startTime;
+
+                    if (remaining <= 1 || elapsed >= maxDuration) {
+                        stopSnapAnimation(false);
+                    }
+                };
+
+                carousel.addEventListener('scroll', snapScrollListener);
+
+                carousel.scrollTo({
+                    left: targetLeft,
+                    behavior: 'smooth',
+                });
             };
 
             const handleUserScroll = () => {
+                if (dragState.active || isSnapAnimating) {
+                    return;
+                }
+
                 isUserInteracting = true;
                 clearTimeout(userScrollTimeout);
                 userScrollTimeout = setTimeout(() => {
+                    if (dragState.active || isSnapAnimating) {
+                        return;
+                    }
                     isUserInteracting = false;
                     scheduleAutoScroll();
                 }, 1000);
@@ -565,18 +701,7 @@
                 if (!carouselItems.length) return;
 
                 const scrollLeft = carousel.scrollLeft;
-                let closestIndex = currentIndex;
-                let minDistance = Infinity;
-
-                carouselItems.forEach((item, index) => {
-                    const distance = Math.abs(item.offsetLeft - scrollLeft);
-                    if (distance < minDistance) {
-                        minDistance = distance;
-                        closestIndex = index;
-                    }
-                });
-
-                currentIndex = closestIndex;
+                currentIndex = getClosestIndex(scrollLeft);
             };
 
             carousel.addEventListener('scroll', () => {
@@ -597,25 +722,26 @@
             });
 
             if (window.PointerEvent) {
-                const pointerMoveOptions = { passive: false };
+                const releasePointerCapture = pointerId => {
+                    if (typeof carousel.releasePointerCapture !== 'function') return;
 
-                const handlePointerMove = event => {
-                    if (!dragState.active || event.pointerId !== dragState.pointerId) return;
-
-                    event.preventDefault();
-                    if (event.pointerType === 'mouse' && event.buttons === 0) {
-                        handlePointerEnd(event);
-                        return;
+                    try {
+                        if (typeof carousel.hasPointerCapture === 'function') {
+                            if (carousel.hasPointerCapture(pointerId)) {
+                                carousel.releasePointerCapture(pointerId);
+                            }
+                        } else {
+                            carousel.releasePointerCapture(pointerId);
+                        }
+                    } catch (error) {
+                        // Ignore release errors which can occur if the pointer is already released
                     }
-                    moveDrag(event.clientX);
                 };
 
                 const handlePointerEnd = event => {
                     if (event.pointerId !== dragState.pointerId) return;
 
-                    window.removeEventListener('pointermove', handlePointerMove, pointerMoveOptions);
-                    window.removeEventListener('pointerup', handlePointerEnd);
-                    window.removeEventListener('pointercancel', handlePointerEnd);
+                    releasePointerCapture(event.pointerId);
                     endDrag();
                 };
 
@@ -625,9 +751,35 @@
 
                     event.preventDefault();
                     startDrag(event.clientX, event.pointerId);
-                    window.addEventListener('pointermove', handlePointerMove, pointerMoveOptions);
-                    window.addEventListener('pointerup', handlePointerEnd);
-                    window.addEventListener('pointercancel', handlePointerEnd);
+
+                    if (typeof carousel.setPointerCapture === 'function') {
+                        try {
+                            carousel.setPointerCapture(event.pointerId);
+                        } catch (error) {
+                            // If the browser rejects pointer capture we continue without it
+                        }
+                    }
+                });
+
+                carousel.addEventListener('pointermove', event => {
+                    if (!dragState.active || event.pointerId !== dragState.pointerId) return;
+
+                    event.preventDefault();
+
+                    if (event.pointerType === 'mouse' && event.buttons === 0) {
+                        handlePointerEnd(event);
+                        return;
+                    }
+
+                    moveDrag(event.clientX);
+                });
+
+                carousel.addEventListener('pointerup', handlePointerEnd);
+                carousel.addEventListener('pointercancel', handlePointerEnd);
+                carousel.addEventListener('lostpointercapture', event => {
+                    if (event.pointerId === dragState.pointerId) {
+                        endDrag();
+                    }
                 });
             } else {
                 const handleMouseMove = event => {

@@ -126,6 +126,7 @@ body {
     overflow-x: auto;
     padding-bottom: 1rem;
     scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
     cursor: grab;
@@ -166,8 +167,13 @@ body {
     pointer-events: none;
 }
 
+.image-carousel.is-free-scroll {
+    scroll-snap-type: none;
+}
+
 .image-carousel.is-dragging {
     cursor: grabbing;
+    scroll-behavior: auto;
 }
 
 .carousel-controls {
