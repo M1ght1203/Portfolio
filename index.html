@@ -21,8 +21,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" />
 
     <!-- Analytics -->
     <script defer src="https://cloud.umami.is/script.js"
@@ -43,7 +41,7 @@
         </div>
     </nav>
 
-    <div class="scroll-wrapper" data-scroll-container>
+    <div class="scroll-wrapper">
         <!-- Hero -->
         <section id="hero" class="content hero-section">
             <div class="hero-video" aria-hidden="true">
@@ -275,7 +273,6 @@
         <a class="mobile-resume" href="resume/resume.pdf" target="_blank" download>Resume</a>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
     <script>
         function toggleMenu() {
             const menu = document.getElementById("mobileMenu");
@@ -316,8 +313,6 @@
         let navHideTimeout;
         let navScrollThreshold = 0;
         let navHideStart = 0;
-        let locoScroll = null;
-
         function updateNavMetrics() {
             if (!nav) return;
 
@@ -362,65 +357,23 @@
         updateNavMetrics();
         window.addEventListener('resize', () => {
             updateNavMetrics();
-            if (locoScroll) {
-                locoScroll.update();
-                const currentY = (locoScroll?.scroll?.instance?.scroll?.y) ?? 0;
-                handleScroll(currentY);
-            } else {
-                handleScroll(window.scrollY);
-            }
+            handleScroll(window.scrollY);
         });
         window.addEventListener('scroll', () => {
-            if (!locoScroll) {
-                handleScroll(window.scrollY);
-            }
+            handleScroll(window.scrollY);
         });
         handleScroll(window.scrollY);
 
         document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', e => {
+            link.addEventListener('click', () => {
                 const targetId = link.getAttribute('href').substring(1);
                 if (!targetId) return;
                 const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    e.preventDefault();
-                    if (locoScroll) {
-                        locoScroll.scrollTo(targetElement);
-                    } else {
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
-                    }
-                    if (link.closest('.mobile-menu')) {
-                        toggleMenu();
-                    }
+                if (targetElement && link.closest('.mobile-menu')) {
+                    toggleMenu();
                 }
             });
         });
-
-        const scrollContainer = document.querySelector('.scroll-wrapper');
-        if (scrollContainer && window.LocomotiveScroll) {
-            locoScroll = new LocomotiveScroll({
-                el: scrollContainer,
-                smooth: true,
-                multiplier: 1,
-                smartphone: {
-                    smooth: true,
-                },
-                tablet: {
-                    smooth: true,
-                },
-            });
-
-            locoScroll.on('scroll', event => {
-                const scrollPosition = event && event.scroll ? event.scroll.y : 0;
-                handleScroll(scrollPosition);
-            });
-
-            requestAnimationFrame(() => {
-                updateNavMetrics();
-                const initialY = (locoScroll?.scroll?.instance?.scroll?.y) ?? 0;
-                handleScroll(initialY);
-            });
-        }
 
         const carousel = document.querySelector('.image-carousel');
         if (carousel) {
