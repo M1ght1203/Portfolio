@@ -170,8 +170,8 @@ body {
 
 .carousel-overlay {
     position: absolute;
-    left: clamp(1rem, 3vw, 2.5rem);
-    bottom: clamp(1rem, 3vw, 2.5rem);
+    left: clamp(0.65rem, 2.5vw, 1.75rem);
+    bottom: clamp(0.65rem, 2.5vw, 1.75rem);
     padding: clamp(1rem, 2.5vw, 1.75rem);
     max-width: min(24rem, 80%);
     background: rgba(6, 9, 16, 0.9);
@@ -227,8 +227,8 @@ body {
     }
 
     .carousel-overlay {
-        left: clamp(0.75rem, 4vw, 1.5rem);
-        right: clamp(0.75rem, 4vw, 1.5rem);
+        left: clamp(0.5rem, 3.5vw, 1.25rem);
+        right: clamp(0.5rem, 3.5vw, 1.25rem);
         max-width: none;
         border-radius: 12px;
         padding: clamp(0.85rem, 4vw, 1.25rem);
