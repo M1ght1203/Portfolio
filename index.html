@@ -397,6 +397,41 @@
             let isSnapAnimating = false;
             let snapScrollListener = null;
 
+            const originalInlineMarginLeft = carousel.style.marginLeft;
+            let originalComputedMarginLeft;
+
+            const refreshOriginalMarginLeft = () => {
+                const previousInlineMargin = carousel.style.marginLeft;
+                if (originalInlineMarginLeft) {
+                    carousel.style.marginLeft = originalInlineMarginLeft;
+                } else {
+                    carousel.style.removeProperty('margin-left');
+                }
+                originalComputedMarginLeft = window.getComputedStyle(carousel).marginLeft;
+                carousel.style.marginLeft = previousInlineMargin;
+            };
+
+            const applyCarouselMargin = () => {
+                if (currentIndex === 0) {
+                    if (carousel.style.marginLeft !== '0px') {
+                        carousel.style.marginLeft = '0px';
+                    }
+                } else if (originalInlineMarginLeft) {
+                    if (carousel.style.marginLeft !== originalInlineMarginLeft) {
+                        carousel.style.marginLeft = originalInlineMarginLeft;
+                    }
+                } else if (originalComputedMarginLeft && originalComputedMarginLeft !== '0px') {
+                    if (carousel.style.marginLeft !== originalComputedMarginLeft) {
+                        carousel.style.marginLeft = originalComputedMarginLeft;
+                    }
+                } else {
+                    carousel.style.removeProperty('margin-left');
+                }
+            };
+
+            refreshOriginalMarginLeft();
+            applyCarouselMargin();
+
             const clearSnapScrollListener = () => {
                 if (!snapScrollListener) return;
 
@@ -439,6 +474,7 @@
                 const target = carouselItems[currentIndex];
                 if (!target) return;
 
+                applyCarouselMargin();
                 carousel.scrollTo({
                     left: target.offsetLeft,
                     behavior: 'smooth',
@@ -514,6 +550,11 @@
                     motionPreferenceQuery.addListener(handleMotionPreferenceChange);
                 }
             }
+
+            window.addEventListener('resize', () => {
+                refreshOriginalMarginLeft();
+                applyCarouselMargin();
+            });
 
             const startDrag = (clientX, pointerId = null) => {
                 stopSnapAnimation(true);
@@ -594,6 +635,7 @@
                 const distance = Math.abs(targetLeft - carousel.scrollLeft);
 
                 currentIndex = targetIndex;
+                applyCarouselMargin();
 
                 if (distance < 1) {
                     stopSnapAnimation(false);
@@ -655,6 +697,7 @@
 
                 const scrollLeft = carousel.scrollLeft;
                 currentIndex = getClosestIndex(scrollLeft);
+                applyCarouselMargin();
             };
 
             carousel.addEventListener('scroll', () => {
