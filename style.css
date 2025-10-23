@@ -522,6 +522,12 @@ body {
         display: none;
     }
 
+    .carousel-item {
+        height: 66vh;
+        max-height: 66vh;
+        aspect-ratio: auto;
+    }
+
     .scroll-wrapper {
         padding-top: 0;
     }
