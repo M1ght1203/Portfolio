@@ -120,8 +120,9 @@ body {
 }
 
 .image-carousel {
+    --carousel-gap: 1.5rem;
     display: flex;
-    gap: 1.5rem;
+    gap: var(--carousel-gap);
     overflow-x: auto;
     padding-bottom: 1rem;
     scroll-snap-type: x mandatory;
@@ -170,8 +171,8 @@ body {
 
 .carousel-overlay {
     position: absolute;
-    left: clamp(0.65rem, 2.5vw, 1.75rem);
-    bottom: clamp(0.65rem, 2.5vw, 1.75rem);
+    left: var(--carousel-gap);
+    bottom: var(--carousel-gap);
     padding: clamp(1rem, 2.5vw, 1.75rem);
     max-width: min(24rem, 80%);
     background: rgba(6, 9, 16, 0.9);
@@ -226,9 +227,13 @@ body {
         max-width: 85vw;
     }
 
+    .image-carousel {
+        --carousel-gap: clamp(0.75rem, 4vw, 1.25rem);
+    }
+
     .carousel-overlay {
-        left: clamp(0.5rem, 3.5vw, 1.25rem);
-        right: clamp(0.5rem, 3.5vw, 1.25rem);
+        left: var(--carousel-gap);
+        right: var(--carousel-gap);
         max-width: none;
         border-radius: 12px;
         padding: clamp(0.85rem, 4vw, 1.25rem);
